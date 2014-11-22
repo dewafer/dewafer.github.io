@@ -1,0 +1,16 @@
+exclude: ["README.md", "Gemfile", "Gemfile.lock"]
+
+# Site settings
+title: dewafer
+email: dewafer@gmail.com
+description: What's this?
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://dewafer.github.io" # the base hostname & protocol for your site
+twitter_username: dewafer
+github_username:  dewafer
+
+# Build settings
+markdown: kramdown
+
+# customer
+home_title: Home

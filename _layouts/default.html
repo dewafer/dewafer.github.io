@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+  {% include head.html %}
+
+  <body>
+
+    {% include header.html %}
+
+    <div class="wrapper">
+
+      <nav>
+        <ul>        
+            <li><a href="{{ site.baseurl }}/">{{ site.home_title }}</a></li>
+            {% for page in site.pages %}
+              {% if page.title %}
+              <li><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></li>
+              {% endif %}
+            {% endfor %}
+        </ul>
+      </nav>
+
+      <section>
+        {{ content }}
+      </section>
+
+      {% include footer.html %}
+
+    </div>
+  </body>
+
+</html>
