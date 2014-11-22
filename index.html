@@ -1,21 +1,90 @@
 ---
-layout: default
+title: Home
+permalink: /
 ---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--<link rel="icon" href="../../favicon.ico">-->
 
+    <title>dewafer</title>
 
-  <h1>Posts</h1>
+    <!-- Bootstrap core CSS -->
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
 
-  <ul>
-    {% for post in site.posts %}
-      <li>
-        <span>{{ post.date | date: "%b %-d, %Y" }}</span>
+    <!-- Custom styles for this template -->
+    <link href="css/cover.css" rel="stylesheet">
 
-        <h2>
-          <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
 
-  <p>subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+  <body>
 
+    <div class="cover-img"></div>
+
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">dewafer</h3>
+              <ul class="nav masthead-nav">
+                  <li class="active"><a href="/">Home</a></li>
+                  <li><a href="/posts/">Posts</a></li>
+                  <li><a href="/about/">About</a></li>
+                  <!--
+                {% for p in site.pages %}
+                  {% if p.title and p.path == page.path %}
+                    <li class="active"><a href="{{ p.url | prepend: site.baseurl }}">{{ p.title }}</a></li>
+                  {% elsif p.title %}
+                    <li><a href="{{ p.url | prepend: site.baseurl }}">{{ p.title }}</a></li>
+                  {% endif %}
+                {% endfor %}
+              -->
+              </ul>
+            </div>
+          </div>
+
+          <div class="inner cover">
+            <h1 class="cover-heading">This is a web site hosted on GitHub.</h1>
+            <p class="lead">Hi, <code>dewafer</code> is my code name, and I want to build a site to introducing myself. But it looks like I need more time to construct it. So,while I'm working on this site, please enjoy these photos. Oh, right, the background photos will change automatically in 30 seconds.</p>
+            <p class="lead">
+              <a href="#" class="btn btn-lg btn-warning">I'm working on it...</a>
+            </p>
+          </div>
+
+          <div class="mastfoot">
+            <div class="inner">
+              <p>Photos by <a href="https://github.com/dewafer">@dewafer</a>.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+
+    <script src="js/rand-bg-img.js"></script>
+  </body>
+</html>
