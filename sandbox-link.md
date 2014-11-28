@@ -1,6 +1,9 @@
 ---
 title: Sandbox
-permalink: /sandbox-link/
+permalink: /sandbox-redirect/
 order: 30
 ---
-Noting here.
+[sandbox](/sandbox/)
+<script language="javascript">
+document.location = document.location + "../sandbox/";
+</script>
