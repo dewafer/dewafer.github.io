@@ -1,6 +1,6 @@
 ---
 title: Sandbox
-permalink: /sandbox/
+permalink: /sandbox-link/
 order: 30
 ---
 Noting here.
