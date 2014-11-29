@@ -1,0 +1,17 @@
+{% if post %}
+{% assign page = post %}
+{% endif %}
+<p class="blog-post-meta">{{ page.date | date: "%F" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}
+	{% if page.tags.size > 0 %}
+		• tags:
+	{% for tag in page.tags %}
+		<a href="/tag/?tag={{ tag }}">{{ tag }}</a>
+   	{% endfor %}
+   	{% endif %}
+   {% if page.categories.size > 0 %}
+		• categories:
+	{% for cat in page.categories %}
+		<a href="/category/?cat={{ cat }}">{{ cat }}</a>
+   	{% endfor %}
+   	{% endif %}
+</p>

@@ -1,0 +1,38 @@
+---
+layout: blog
+title: Blog
+description: all my blogs
+menu-order: 50
+about: This page contains all my blogs
+about-title: What's this?
+---
+
+{% assign posts = false %}
+
+{% if paginator %}
+  {% assign posts = paginator.posts %}
+{% else %}
+  {% assign posts = site.posts %}
+{% endif %}
+
+
+{% for post in posts %}
+
+  <article class="blog-post">
+    <h2 class="blog-post-title">{{ post.title }} <a href="{{ post.url }}" ><span class="glyphicon glyphicon-link invisible"></span></a></h2>
+    {% include blog-post-meta.html %}
+
+    {{ post.excerpt }}
+
+    {% if post.content contains site.excerpt_separator %}
+      <p>
+      <a class="btn btn-default" href="{{ post.url | prepend: site.baseurl }}" role="button">Read more <span class="glyphicon glyphicon-chevron-right"><span/></a>
+      </p>
+    {% endif %}
+
+  </article><!-- /.blog-post -->
+
+{% endfor %}
+<!--
+  <p>subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+-->

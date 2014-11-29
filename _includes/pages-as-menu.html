@@ -1,0 +1,13 @@
+{% assign site_pages_sorted = site.pages | sort:'menu-order' %}
+
+{% for p in site_pages_sorted %}
+    {% if p.title and p.menu-order%}
+      {% unless p.url contains '/page' %}
+        {% if include.use_li %}
+          <li class="{{ include.pre_class }} {% if p.title == page.title %}{{ include.active_class }}{% endif %}"><a href="{{ p.url | prepend: site.baseurl }}">{{ p.title }}</a></li>
+        {% else %}
+          <a class="{{ include.pre_class }} {% if p.title == page.title %}{{ include.active_class }}{% endif %}" href="{{ p.url | prepend: site.baseurl }}">{{ p.title }}</a>
+        {% endif %}
+      {% endunless %}
+    {% endif %}
+{% endfor %}

@@ -1,0 +1,47 @@
+<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+  {% if page.about and page.about-title%}
+    <div class="sidebar-module sidebar-module-inset">
+    <h4>{{ page.about-title}}</h4>
+    {{ page.about }}
+    </div>
+  {% elsif page.about %}
+    <div class="sidebar-module sidebar-module-inset">
+    <h4>About</h4>
+    {{ page.about }}
+    </div>
+  {% elsif page.excerpt %}
+    <div class="sidebar-module sidebar-module-inset">
+      <h4>Excerpt</h4>
+      {{ page.excerpt | truncate: 250 | strip_html }}
+    </div>
+  {% endif %}
+
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ol class="list-unstyled">
+      {% for category in site.categories %}
+        <li><a href="/category/?cat={{ category | first }}">{{ category | first }}</a></li>
+      {% endfor %}
+    </ol>
+  </div>
+
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ol class="list-unstyled">
+      {% for tag in site.tags %}
+        <li><a href="/tag/?tag={{ tag | first }}">{{ tag | first }}</a></li>
+      {% endfor %}
+    </ol>
+  </div>
+
+  <div class="sidebar-module">
+    <h4>Links</h4>
+    <ol class="list-unstyled">
+
+      {% for link in site.data.links %}
+        <li><a href="{{ link | last }}">{{ link | first }}</a></li>
+      {% endfor %}
+
+    </ol>
+  </div>
+</div><!-- /.blog-sidebar -->

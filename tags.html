@@ -1,0 +1,39 @@
+---
+layout: blog
+title: The Tag
+description: All the articles have this tag attached
+permalink: /tag/
+---
+
+<script src="{{ "/js/jquery.query.js" | prepend: site.baseurl }}"></script>
+<script language="javascript">
+	$(function(){
+		$.getJSON("{{ site.baseurl }}/tag/json/", function(data){
+
+				var tag = $.query.get('tag');
+				if( tag && data[tag] ){
+
+					$('.blog-title').text(tag);
+
+					for( var idx in data[tag] ){
+
+						var post = data[tag][idx];
+
+						var article = $('<article class="blog-post"/>');
+
+						article.html(post.excerpt);
+
+						var title = $('<h2 class="blog-post-title"/>').html(post.title + ' <a href="' + post.url + '" ><span class="glyphicon glyphicon-link invisible"></span></a>');
+						var meta = $('<p class="blog-post-meta"/>').text(post.meta);
+						article.prepend(meta).prepend(title);
+						if(post.more){
+							article.append($(post.more));
+						}
+						article.appendTo('section');
+					}
+				}
+
+				blog_post_title_link();
+		});
+	});
+</script>

@@ -1,0 +1,10 @@
+        {% if page.title %}
+
+          <div class="blog-header">
+            <h1 class="blog-title">{{ page.title }}</h1>
+            {% if page.description %}
+            <p class="lead blog-description">{{ page.description }}</p>
+            {% endif %}
+          </div>
+
+        {% endif %}

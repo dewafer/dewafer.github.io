@@ -1,0 +1,6 @@
+---
+layout: blog-post
+title: new face
+author: me
+---
+Look! How nice it is!

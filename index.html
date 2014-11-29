@@ -1,7 +1,7 @@
 ---
 title: Home
 permalink: /
-order: 0
+menu-order: 0
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -42,21 +42,7 @@ order: 0
             <div class="inner">
               <h3 class="masthead-brand">dewafer</h3>
               <ul class="nav masthead-nav">
-                <!--
-                  <li class="active"><a href="/">Home</a></li>
-                  <li><a href="/posts/">Posts</a></li>
-                  <li><a href="/about/">About</a></li>
-                -->
-                {% assign site_pages_sorted = site.pages | sort: 'order' %}
-                {% for p in site_pages_sorted %}
-                  {% assign class = "" %}
-                  {% if p.title %}
-                    {% if p.path == page.path %}
-                      {% assign class = "active" %}
-                    {% endif %}
-                    <li class="{{ class }}"><a href="{{ p.url | prepend: site.baseurl }}">{{ p.title }}</a></li>
-                  {% endif %}
-                {% endfor %}
+                {% include pages-as-menu.html use_li=true active_class="active" pre_class="" %}
               </ul>
             </div>
           </div>

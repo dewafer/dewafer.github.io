@@ -1,13 +1,19 @@
 ---
-layout: page
+layout: blog-page
 title: About
 permalink: /about/
-order: 20
+menu-order: 20
+about: 这只是一个关于页面。
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+这些页面是我用Bootstrap、JQuery和Jekyll搭建在GitHub上的，花费了我不少心血。用[jekyll](http://jekyllrb.com/)写博客绝对是一件抽筋的事情，通常是博客还没开始写解决各种问题的时间倒是花了不少，也因此习得不少疑难杂症的解决方法，譬如Ubuntu上Sublime Text怎样输入中文等等莫名其妙的问题。
 
-You can find the source code for the Jekyll new theme at: [github.com/jglovier/jekyll-new](https://github.com/jglovier/jekyll-new)
+总结下这段时间的折腾，我觉得最终要的还是得细心。因为各种疑难杂症的病因通常是因为一些不起眼的小细节。如果心不够细，或者太急于求成就很容易遗漏这些细节。而一旦遗漏了就根本没有补救的方法。因为一旦你确定某快地方并无病因，就绝对不会再回头来看这块地方进而就不可能找出病因所在之处——通常都隐藏在这些地方之中。
 
-You can find the source code for Jekyll at [github.com/jekyll/jekyll](https://github.com/jekyll/jekyll)
+好了屁话说了那么多可以结尾了。
 
+> 这是一片屁话连篇的About。
+
+非常感谢您的关注。
+
+P.S. 忘记说一下了，您看到的其他各种页面都是我为了测试效果而创建出来的各种没用的页面，请无视。

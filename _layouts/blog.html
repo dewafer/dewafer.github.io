@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+    {% include blog-head.html %}
+
+    <body>
+
+        {% include blog-header.html %}
+
+        <div class="container">
+
+            {% include blog-title.html %}
+
+            <div class="row">
+
+                <div class="col-sm-8 blog-main">
+
+                  <section>
+                    {{ content }}
+                  </section>
+
+                    {% include blog-pagination.html %}
+
+                </div><!-- /.blog-main -->
+
+                {% include blog-siderbar.html %}
+
+            </div><!-- /.row -->
+
+        </div><!-- /.container -->
+
+        {% include blog-footer.html %}
+        
+    </body>
+</html>

@@ -11,16 +11,7 @@
 
       <nav>
         <ul> 
-            {% assign site_pages_sorted = site.pages | sort:'order' %}
-            {% for p in site_pages_sorted %}
-               {% assign class = "" %}
-                {% if p.title %}
-                  {% if p.path == page.path %}
-                    {% assign class = "tag-h1" %}
-                  {% endif %}
-                  <li class="{{ class }}"><a href="{{ p.url | prepend: site.baseurl }}">{{ p.title }}</a></li>
-                {% endif %}
-            {% endfor %}
+          {% include pages-as-menu.html use_li=true active_class="tag-h1" %}
         </ul>
       </nav>
 

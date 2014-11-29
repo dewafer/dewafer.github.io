@@ -1,7 +1,7 @@
 ---
 title: Sandbox
 permalink: /sandbox-redirect/
-order: 30
+menu-order: 30
 ---
 [sandbox](/sandbox/)
 <script language="javascript">
