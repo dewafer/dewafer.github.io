@@ -9,7 +9,7 @@
 	];
 
 	// background change interval in seconds
-	var BG_CHG_INTERVAL_SEC = 30;
+	var BG_CHG_INTERVAL_SEC = 22;
 
 	// load first img
 	load_bg_img();
@@ -70,18 +70,4 @@
 		last_img_idx = next;
 		return images[next];
 	}
-
-	/*
-	function round(append_to, pos_x, pos_y){
-		return $('<div class="running-round-point"/>')
-			.css('border', '1px solid white')
-			.css('border-radius', '50%')
-			.css('width', '5px')
-			.css('height', '5px')
-			.css('position', 'fixed')
-			.css('top', pos_x)
-			.css('left', pos_y)
-			.appendTo(append_to);
-	}
-	*/
 })();
