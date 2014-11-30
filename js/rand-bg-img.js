@@ -29,15 +29,29 @@
 		// fading in and out image when it's loaded
 		img_cache = $('<img/>');
 		img_cache.on('load', function () {
-				$('.cover-img > div')
-					.fadeOut()
-					.remove();
-				$('<div/>')
-					.addClass('cover-img')
-					.css('background-image', 'url(' + img_cache.attr('src') + ')')
-					.css('display', 'none')
-					.appendTo('.cover-img')
-					.fadeIn();
+			if( $('#loading_block').length > 0 ){
+				// first time loaded, fadeout loading block
+				$('#loading_block').fadeOut(function(){
+					// remove loading block
+					$(this).remove();
+					// slide all the childrens of body
+					$('div.cover-container > div').slideDown(function(){
+						// fix overflow
+						$('div.cover-container > div').css('overflow', 'visible');
+					});
+				});
+			}
+
+			// display img
+			$('.cover-img > div')
+				.fadeOut()
+				.remove();
+			$('<div/>')
+				.addClass('cover-img')
+				.css('background-image', 'url(' + img_cache.attr('src') + ')')
+				.css('display', 'none')
+				.appendTo('.cover-img')
+				.fadeIn();
 		});
 		
 		// load next rand img
