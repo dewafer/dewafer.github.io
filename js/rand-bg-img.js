@@ -38,6 +38,8 @@
 					$('div.cover-container > div').slideDown(function(){
 						// fix overflow
 						$('div.cover-container > div').css('overflow', 'visible');
+						// resize on DOM finished.
+						sync_cover_img_height();
 					});
 				});
 			}
@@ -70,4 +72,12 @@
 		last_img_idx = next;
 		return images[next];
 	}
+
+	$(window).resize(sync_cover_img_height);
+
+	// make sure .site-wrapper and .cover-img have got the same size
+	function sync_cover_img_height(){
+		$('.cover-img').height($('.site-wrapper').height());
+	}
+
 })();
