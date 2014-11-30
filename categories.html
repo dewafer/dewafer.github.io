@@ -5,35 +5,9 @@ description: All the articles under this category
 permalink: /category/
 ---
 
-<script src="{{ "/js/jquery.query.js" | prepend: site.baseurl }}"></script>
+<script src="{{ '/js/jquery.query.js' | prepend: site.baseurl }}"></script>
 <script language="javascript">
 	$(function(){
-		$.getJSON("{{ site.baseurl }}/category/json/", function(data){
-
-				var category = $.query.get('cat');
-				if( category && data[category] ){
-
-					$('.blog-title').text(category);
-
-					for( var idx in data[category] ){
-
-						var post = data[category][idx];
-
-						var article = $('<article class="blog-post"/>');
-
-						article.html(post.excerpt);
-
-						var title = $('<h2 class="blog-post-title"/>').html(post.title + ' <a href="' + post.url + '" ><span class="glyphicon glyphicon-link invisible"></span></a>');
-						var meta = $('<p class="blog-post-meta"/>').text(post.meta);
-						article.prepend(meta).prepend(title);
-						if(post.more){
-							article.append($(post.more));
-						}
-						article.appendTo('section');
-					}
-				}
-				
-				blog_post_title_link();
-		});
+		query_blog_posts('{{ site.baseurl }}/category/json/', 'cat');
 	});
 </script>
