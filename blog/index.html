@@ -18,6 +18,14 @@ about-title: What's this?
 
 {% for post in posts %}
 
+{% assign is_blog = false %}
+{% for cat in post.categories %}
+  {% if cat == 'blog' %}
+    {% assign is_blog = true %}
+  {% endif %}
+{% endfor %}
+
+{% if is_blog %}
   <article class="blog-post">
     <h2 class="blog-post-title">{{ post.title }} <a href="{{ post.url }}" ><span class="glyphicon glyphicon-link invisible"></span></a></h2>
     {% include blog-post-meta.html %}
@@ -31,6 +39,7 @@ about-title: What's this?
     {% endif %}
 
   </article><!-- /.blog-post -->
+{% endif %}
 
 {% endfor %}
 <!--
