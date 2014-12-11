@@ -34,6 +34,10 @@ body {
   text-align: center;
   text-shadow: 0 1px 13px rgba(0,0,0,1);
 }
+/* no shadow for tags in content */
+.inner > p > .btn, .inner > p > code {
+  text-shadow: none;
+}
 /*
  * background-img
  */
@@ -83,7 +87,6 @@ body {
 .inner {
   padding: 30px;
 }
-
 
 /*
  * Header
@@ -186,4 +189,38 @@ body {
   .cover-container {
     width: 700px;
   }
+}
+
+/* fixed-info */
+.fixed-info {
+  position: fixed;
+  top: -95px;
+  color: rgba(255, 255, 255, 1);
+  height: 95px;
+  text-align: left;
+}
+.fixed-info-button {
+  width: 28px;
+  height: 100%;
+  line-height: 95px;
+  background: rgba(0, 0, 0, 0.7);
+  float: left;
+  vertical-align: middle;
+  text-align: center;
+  border-radius: 5px 0 0 5px;
+  cursor: pointer;
+}
+.fixed-info-button-gap {
+  height: 100%;
+  width: 2px;
+  float: left;
+}
+.fixed-info-content {
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  float: left;
+  vertical-align: top;
+  padding: 10px 25px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
