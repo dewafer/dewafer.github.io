@@ -1,0 +1,162 @@
+.fix-bottom { 
+  position: absolute;
+  bottom: 0;
+  width: 100%; 
+}
+
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+
+@media (max-width: 767px){
+  .left-nav { 
+    display: none; 
+  }
+
+  body { 
+    padding-left: 0px; 
+  }
+
+  .navbar-fixed-top {
+    right: 0; left: 0; 
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .left-nav { 
+    width: 45px; 
+    position: fixed; 
+    left: 0; top: 0; 
+    height: 100%; 
+    overflow: hidden; 
+  }
+
+  body { 
+    padding-left: 45px; 
+  }
+
+  .navbar-fixed-top {
+    right: 0; 
+    left: 45px; 
+  }
+
+  .left-nav li .menu-icon + span { 
+    display: none;
+  }
+
+}
+
+@media (min-width: 992px) {
+  .navbar-fixed-top {
+    right: auto; left: auto; width: 60%; 
+  }
+  article {
+    margin-left: 40px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .left-nav { 
+    width: 170px; 
+    position: fixed; 
+    left: 0; 
+    top: 0; 
+    height: 100%; 
+  }
+
+  body { 
+    padding-left: 170px; 
+  }
+
+  .content-wrapper { 
+    padding-left: 43px; 
+  }
+
+  .left-nav li .menu-icon + span { 
+    display: inline;
+  }
+}
+
+.left-photo { 
+  position: fixed; 
+  height: 100%; 
+  /*background: url("?holder.js/460x900/^333:^999/text:Not Available Right Now");*/
+  /*background-color: #333;*/
+  -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+          box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+  /*z-index: 9999;*/
+  padding: 0;
+} 
+.left-photo-bg {
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  cursor: pointer;
+}
+
+section { 
+  margin: 60px auto 110px auto;
+  border-bottom: 1px dashed #CCC;
+}
+section > p {
+  line-height: 25px;
+}
+
+article {
+  margin-top: 85px; 
+}
+
+.navbar-fixed-top { 
+  background: #FFF; 
+}
+
+.navbar-fixed-top ul.navbar-nav > li.active {
+  border-bottom: 1px solid #000;
+}
+
+.navbar-fixed-top ul.navbar-nav > li.active > a {
+  background: none;
+}
+
+.left-nav ul > li.active > a { 
+  border-radius: 0; 
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3); 
+  text-shadow: 0 1px 0 #000; 
+}
+.left-nav ul > li > a { 
+  text-shadow: 0 1px 0 #FFF; 
+}
+.left-nav { 
+  background-color: #EEE; 
+}
+
+.left-photo .fix-bottom {
+  margin: 30px;
+  color: #FFF;
+  text-shadow: 0 1px 0 #000; 
+  width: auto;
+}
+
+footer {
+  border-top: 1px solid #EEE;
+}
+
+footer > nav.navbar {
+  color: #777;
+  position: static;
+  background: none;
+  border: none;
+  border-radius: 0;
+  margin: auto 20px;
+}

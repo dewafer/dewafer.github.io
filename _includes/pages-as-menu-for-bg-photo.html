@@ -1,0 +1,12 @@
+{% assign site_pages_sorted = site.pages | sort:'menu-order' %}
+
+{% for p in site_pages_sorted %}
+    {% if p.title and p.menu-order%}
+      {% unless p.url contains '/page' %}
+          <li class="{{ include.pre_class }}  {% if p.title == page.title %}{{ include.active_class }}{% endif %}"><a href="{{ p.url | prepend: site.baseurl }}" data-toggle="tooltip" data-placement="right" title="{{ p.title }}">
+
+          		<img class="menu-icon" data-src="holder.js/18x18/{% if p.title == page.title %}#428BCA:#FFFFFF{% else %}#428BCA:#FFFFFF{% endif %}/text:{{ p.title | split:"" | first | upcase }}">&nbsp;<span>{{ p.title }}</span>
+          </a></li>
+      {% endunless %}
+    {% endif %}
+{% endfor %}

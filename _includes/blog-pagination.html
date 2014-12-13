@@ -24,21 +24,26 @@
         {% else %}
             <li><span>Next</span></li>
         {% endif %}
-    {% elsif page.id %}
-            <li>
-                {% if page.previous %}
-                <a href="{{ page.previous.url }}">Previous</a>
-                {% else %}
-                <span>Previous</span>
-                {% endif %}
-            </li>
-            <li>
-                {% if page.next %}
-                <a href="{{ page.next.url }}">Next</a>
-                {% else %}
-                <span>Next</span>
-                {% endif %}
-            </li>
+<!--   remove post nav
+            {% comment %}
+            {% raw %}
+            {% elsif page.id %}
+                    <li>
+                        {% if page.previous %}
+                        <a href="{{ page.previous.url }}">Previous</a>
+                        {% else %}
+                        <span>Previous</span>
+                        {% endif %}
+                    </li>
+                    <li>
+                        {% if page.next %}
+                        <a href="{{ page.next.url }}">Next</a>
+                        {% else %}
+                        <span>Next</span>
+                        {% endif %}
+                    </li>
+            {% endraw %}
+            {% endcomment %}    -->
     {% endif %}
     </ul>
 </nav>

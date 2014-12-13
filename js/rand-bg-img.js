@@ -4,23 +4,54 @@
 // function here is to avoid unintentional 
 // global namespace override.
 (function init() {
+
 	// show background images randomly
-	var images = [
-		"large_image/DSC_4041_1920.jpg"
-		,"large_image/DSC_4042_1920.jpg"
-		,"large_image/DSC_4043_1920.jpg"
-		,"large_image/DSC_4047_1920.jpg"
-		,"large_image/DSC_4071_1920.jpg"
-	];
+	var images = [];
 
 	// background change interval in seconds
 	var BG_CHG_INTERVAL_SEC = 22;
 
-	// load first img
-	load_bg_img();
+	// interval id for stop
+	var img_interval_id;
 
-	// start interval
-	var img_interval_id = setInterval(load_bg_img, BG_CHG_INTERVAL_SEC * 1000);
+	// start
+	request_images(function done(){
+		if( images.length < 1){
+			// fail safe
+			remove_loading();
+			$('.cover-img.holderjs').attr('data-background-src', '?holder.js/1920x1080/social/text:Hello World!');
+			Holder.run({images:$('.cover-img.holderjs').get(0)})
+			return;
+		} 
+
+		// load first img
+		load_bg_img();
+
+		if( images.length > 1 ){
+			// start interval
+			img_interval_id = setInterval(load_bg_img, BG_CHG_INTERVAL_SEC * 1000);
+		}
+	});
+
+	// this method uses Ajax to load
+	// images list from some RESTFUL APIs which will
+	// return a json object.
+	function request_images (do_next) {
+		// load img list
+		$.getJSON('/background-photos/json/', function success(data){
+			if(data['background-photos']){
+				images = [];
+				for(var i=0; i< data['background-photos'].length; i++) {
+					if(data['background-photos'][i]['photo-url']){
+						images.push(data['background-photos'][i]);
+					}
+				}
+			}
+			if(do_next){
+				do_next();
+			}
+		});
+	}
 
 	// load img
 	function load_bg_img(){
@@ -39,23 +70,17 @@
 				return;
 			}
 
+			// skip if info is open
+			if(fixed_info_asider.isOpen()){
+				return;
+			}
+
+			var next_img = next_rand_img();
+
 			// fading in and out image when it's loaded
 			img_cache = $('<img/>');
 			img_cache.on('load', function () {
-				if( $('#loading_block').length > 0 ){
-					// first time loaded, fadeout loading block
-					$('#loading_block').fadeOut(function(){
-						// remove loading block
-						$(this).remove();
-						// slide all the childrens of body
-						$('div.cover-container > div').slideDown(function(){
-							// fix overflow
-							$('div.cover-container > div').css('overflow', 'visible');
-							// resize on DOM finished.
-							sync_cover_img_height();
-						});
-					});
-				}
+				remove_loading();
 
 				// display img
 				$('.cover-img > div')
@@ -67,10 +92,13 @@
 					.css('display', 'none')
 					.appendTo('.cover-img')
 					.fadeIn();
+
+				fixed_info_asider.set(next_img);
+
 			});
 			
 			// load next rand img
-			img_cache.attr('src',next_rand_img());
+			img_cache.attr('src',next_img['photo-url']);
 		})();
 		
 		// keep the current img
@@ -79,9 +107,6 @@
 
 	// get next img
 	function next_rand_img(){
-		// TODO: change this method to use Ajax to load
-		// images list from some RESTFUL APIs which will
-		// return a json object.
 		return images[next_random(images.length)];
 	}
 
@@ -124,6 +149,24 @@
 	// make sure .site-wrapper and .cover-img have got the same size
 	function sync_cover_img_height(){
 		$('.cover-img').height($('.site-wrapper').height());
+	}
+
+	// remove loading block from DOM
+	function remove_loading(){
+		if( $('#loading_block').length > 0 ){
+			// first time loaded, fadeout loading block
+			$('#loading_block').fadeOut(function(){
+				// remove loading block
+				$(this).remove();
+				// slide all the childrens of body
+				$('div.cover-container > div').slideDown(function(){
+					// fix overflow
+					$('div.cover-container > div').css('overflow', 'visible');
+					// resize on DOM finished.
+					sync_cover_img_height();
+				});
+			});
+		}
 	}
 
 })();

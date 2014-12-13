@@ -15,7 +15,7 @@ permalink: /tag/json/
 				  "url":"{{ post.url | prepend: site.baseurl }}"
 				, "title":"{{ post.title }}"
 				, "meta":"{{ post.date | date:"%F" }}{% if post.author %} by {{ post.author }}{% endif %}{% if post.meta %} {{ post.meta }}{% endif %}"
-				, "excerpt":"{{ post.excerpt | replace: '"', '\"' | strip_newlines }}"
+				, "excerpt":{{ post.excerpt | jsonify }}
 				{% if post.content contains site.excerpt_separator %}
 				, "more": "<p><a href=\"{{ post.url | prepend: site.baseurl }}\">more</a></p>"
 				{% endif %}
