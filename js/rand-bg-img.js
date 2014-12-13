@@ -19,7 +19,8 @@
 		if( images.length < 1){
 			// fail safe
 			remove_loading();
-			$('.cover-img.holderjs').attr('data-background-src', '?holder.js/1920x1080/social/text:Hello World!');
+			$('.cover-img.holderjs').attr('data-background-src', '?holder.js/1920x1080/social/text:Hello, World!');
+			// if no photos exist, there will be a hello-world picture.
 			Holder.run({images:$('.cover-img.holderjs').get(0)})
 			return;
 		} 
@@ -40,14 +41,44 @@
 		// load img list
 		$.getJSON('/background-photos/json/', function success(data){
 			if(data['background-photos']){
+				// clear img list
 				images = [];
+
 				for(var i=0; i< data['background-photos'].length; i++) {
 					if(data['background-photos'][i]['photo-url']){
-						images.push(data['background-photos'][i]);
+						// load img list from json object
+						var img = data['background-photos'][i];
+						images.push(img);
+
+						// create pointer for each img
+						var pointer = $('<li>');
+						pointer
+							.attr('data-photo-id', i)
+							.on('click', function(){
+								// go to the img if li is clicked
+
+								// skip if info is open
+								if(fixed_info_asider.isOpen()){
+									return;
+								}
+
+								// the next picture will be the id of li -1
+								next_random.next = $(this).attr('data-photo-id') - 1;
+								load_bg_img();
+								$(this).addClass('active');
+								$(this).siblings().removeClass('active');
+
+							})
+							.appendTo('.photo-list-pointer > ul');
+
+						if(i == 0){
+							pointer.addClass('active');
+						}
 					}
 				}
 			}
 			if(do_next){
+				// do while done
 				do_next();
 			}
 		});
@@ -93,7 +124,13 @@
 					.appendTo('.cover-img')
 					.fadeIn();
 
+				// load inf of img to the siderbar
 				fixed_info_asider.set(next_img);
+
+				// active img's li
+				var pointer = $('li[data-photo-id="'+ next_random.next + '"]');
+				pointer.siblings().removeClass('active');
+				pointer.addClass('active');
 
 			});
 			
@@ -114,7 +151,7 @@
 	function next_random(max){
 
 		// if initialized and length of images(max) is not changed
-		if( next_random.shifted_list &&  next_random.next 
+		if( next_random.shifted_list && next_random.next !== undefined
 			&& max == next_random.shifted_list.length ){
 			// get next random index number
 			return _get_next();
@@ -129,15 +166,19 @@
 		shifted_list.sort(function(a, b){ return 0.5 - Math.random(); });
 		// apply static fields
 		next_random.shifted_list = shifted_list;
-		next_random.next = 0;
+		next_random.next = -1;
 
 		// next random index number
 		return _get_next();
 
 		// get the next random index number
 		function _get_next(){
-			return next_random.shifted_list[next_random.next++ % max];
+			next_random.next = (next_random.next + 1) % max;
+			return next_random.shifted_list[next_random.next];
 		}
+
+
+
 	}
 
 	// test will print [0, 1, 2, 3, 4, <repeat from 0>...] to your console every 300ms
