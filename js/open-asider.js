@@ -14,24 +14,41 @@ var fixed_info_asider = (function init(){
 		// toggle button and do animate
 		if(!isOpen()){
 			// open button on the screen
-			$('.fixed-info-button > span.glyphicon').removeClass('glyphicon-chevron-left').addClass('glyphicon-chevron-right');
-			$('.fixed-info').animate({right: '0px'}, finish);
+			open();
 		} else {
 			// close button on the screen
 			// do the animation first then change the button
-			$('.fixed-info').animate({right: close_pos + 'px'}, function(){
-				$('.fixed-info-button > span.glyphicon').removeClass('glyphicon-chevron-right').addClass('glyphicon-chevron-left');
-				finish();
-			});
+			close();
 		}
+	}
 
+	// is animating
+	function start(){
 		// is animating
 		toggle.is_acting = true;
+	}
+	// animation finished
+	function end(){
+		toggle.is_acting = false;
+	}
 
-		// animation finished
-		function finish(){
-			toggle.is_acting = false;
-		}
+	function open(done){
+		start();
+		$('.fixed-info-button > span.glyphicon').removeClass('glyphicon-chevron-left').addClass('glyphicon-chevron-right');
+		$('.fixed-info').animate({right: '0px'}, function(){
+			end();
+			if(done) { done(); }
+		});
+	}
+
+	function close(done){
+		start();
+		// do the animation first then change the button
+		$('.fixed-info').animate({right: close_pos + 'px'}, function(){
+			$('.fixed-info-button > span.glyphicon').removeClass('glyphicon-chevron-right').addClass('glyphicon-chevron-left');
+			end();
+			if(done) { done(); }
+		});
 	}
 
 	// if close button is on the screen then siderbar is open
@@ -42,23 +59,32 @@ var fixed_info_asider = (function init(){
 	// set information of img, here is info
 	function set(info){
 		if(info){
-			$('.fixed-info-content').html('<a href="' + info.url + '">'
-				// will use excerpt if no photo-description exists
-				+ ((info['photo-description'])? info['photo-description'] : info.excerpt )
-				+ '</a>');
+			$('.fixed-info-content').html('<h4>'
+				// will use title if no photo-description exists
+				+ info.title
+				+ "</h4><p>"
+				+ ((info['photo-description'])? info['photo-description'] : "" )
+				+ "</p>"
+				).click(function(){
+					$(window.location).attr('href', info.url);
+				});
 		}
 
 		// the size of siderbar is closed and recalculate close_pos
 		close_pos = $('.fixed-info-button').width() - $('.fixed-info').width();
 		$('.fixed-info').css('right', close_pos + 'px').css('top', 'auto').css('bottom', '23%');
+		var content_max_width = $(window).width() * .8 ;
+		$('.fixed-info-content').css('max-width', content_max_width);
 	}
 
 	// set position with no info
 	set();
 	// register toggle event for button
 	$('.fixed-info-button').on('click mouseenter',toggle);
+	// register window resize event
+	$(window).resize(set());
 
 	// return the methods to be used in rand-bg-img.js
-	return { 'set': set, 'isOpen': isOpen };
+	return { 'set': set, 'isOpen': isOpen, 'open': open, 'close': close };
 
 })();

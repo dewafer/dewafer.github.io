@@ -20,7 +20,7 @@
     <h4>Categories</h4>
     <ol class="list-unstyled">
       {% for category in site.categories %}
-        <li><a href="/category/?cat={{ category | first }}">{{ category | first }}</a></li>
+        <li><a href="/category/?cat={{ category | first | uri_escape }}">{{ category | first }}</a></li>
       {% endfor %}
     </ol>
   </div>
@@ -29,7 +29,7 @@
     <h4>Tags</h4>
     <ol class="list-unstyled">
       {% for tag in site.tags %}
-        <li><a href="/tag/?tag={{ tag | first }}">{{ tag | first }}</a></li>
+        <li><a href="/tag/?tag={{ tag | first | uri_escape}}">{{ tag | first }}</a></li>
       {% endfor %}
     </ol>
   </div>

@@ -112,6 +112,7 @@ footer {
 }
 section { 
   margin: 60px auto 110px auto;
+  padding-bottom: 60px;
   border-bottom: 1px dashed #CCC;
 }
 section > p {
