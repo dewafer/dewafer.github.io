@@ -222,7 +222,7 @@ body {
   vertical-align: top;
   padding: 10px 25px;
   overflow: hidden;
-  text-overflow: ellipsis;
+  cursor: pointer;
 }
 .photo-list-pointer > ul {
   list-style-type: none;

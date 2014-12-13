@@ -57,17 +57,21 @@
 							.on('click', function(){
 								// go to the img if li is clicked
 
-								// skip if info is open
+								var theLi = this;
+								// close if info is open
 								if(fixed_info_asider.isOpen()){
-									return;
+									fixed_info_asider.close(next);
+								} else {
+									next();
 								}
 
-								// the next picture will be the id of li -1
-								next_random.next = $(this).attr('data-photo-id') - 1;
-								load_bg_img();
-								$(this).addClass('active');
-								$(this).siblings().removeClass('active');
-
+								function next(){
+									// the next picture will be the id of li -1
+									next_random.next = $(theLi).attr('data-photo-id') - 1;
+									load_bg_img();
+									$(theLi).addClass('active');
+									$(theLi).siblings().removeClass('active');
+								}
 							})
 							.appendTo('.photo-list-pointer > ul');
 
