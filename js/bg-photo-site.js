@@ -1,5 +1,13 @@
 $(function init(){
-	$('div.left-nav ul.nav > li > a').tooltip( {'container' : 'body'} );
+	$('ul.nav > li > a').hover(
+		function handlerIn(eventObject){
+			$(this).parent().addClass('active');
+		}
+		,function handlerOut(eventObject){
+			$(this).parent().removeClass('active');
+		}
+	).tooltip( {'container' : 'body'} );
+
 	$('.left-photo-bg').on('click', function(event){
 		if($(this).css('position') == 'fixed'){
 			$(this).animate({ 'left': $('.left-nav').width() , 'right': (($(window).width() - $('.left-nav').width()) * .75 - 60) }, function(){

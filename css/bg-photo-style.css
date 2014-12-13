@@ -104,7 +104,12 @@ footer {
   background-position: center center;
   cursor: pointer;
 }
-
+.left-photo-bg > div.fix-bottom {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  padding: 3px 10px;
+  text-shadow: 1px 1px 2px #000;
+}
 section { 
   margin: 60px auto 110px auto;
   border-bottom: 1px dashed #CCC;
@@ -119,6 +124,7 @@ article {
 
 .navbar-fixed-top { 
   background: #FFF; 
+  height: 51px;
 }
 
 .navbar-fixed-top ul.navbar-nav > li.active {

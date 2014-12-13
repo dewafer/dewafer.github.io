@@ -1,6 +1,10 @@
 /*
  * Globals
  */
+html {
+  min-height: 100%;
+  position: relative;
+}
 
 body {
   font-family: Georgia, "Times New Roman", Times, serif;
@@ -161,6 +165,10 @@ h6, .h6 {
   text-align: center;
   background-color: #f9f9f9;
   border-top: 1px solid #e5e5e5;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 .blog-footer p:last-child {
   margin-bottom: 0;
