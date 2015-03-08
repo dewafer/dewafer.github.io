@@ -21,8 +21,18 @@ div.cover-container > div {
  
   border-radius: 100%;
   position: absolute;
+  /*
   -webkit-animation: bouncedelay 1.2s infinite ease-in-out;
   animation: bouncedelay 1.2s infinite ease-in-out;
+  */
+  -webkit-animation-name: bouncedelay;
+  animation-name: bouncedelay;
+  -webkit-animation-duration: 1.2s;
+  animation-duration: 1.2s;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }

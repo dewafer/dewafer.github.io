@@ -9,7 +9,7 @@
 	var images = [];
 
 	// background change interval in seconds
-	var BG_CHG_INTERVAL_SEC = 22;
+	var BG_CHG_INTERVAL_SEC = 7;
 
 	// interval id for stop
 	var img_interval_id;
@@ -18,7 +18,7 @@
 	request_images(function done(){
 		if( images.length < 1){
 			// fail safe
-			remove_loading();
+			hide_loading();
 			$('.cover-img.holderjs').attr('data-background-src', '?holder.js/1920x1080/social/text:Hello, World!');
 			// if no photos exist, there will be a hello-world picture.
 			Holder.run({images:$('.cover-img.holderjs').get(0)})
@@ -28,11 +28,18 @@
 		// load first img
 		load_bg_img();
 
+		reset_interval();
+	});
+
+	function reset_interval(){
+		if(img_interval_id){
+			clearInterval(img_interval_id);
+		}
 		if( images.length > 1 ){
 			// start interval
 			img_interval_id = setInterval(load_bg_img, BG_CHG_INTERVAL_SEC * 1000);
 		}
-	});
+	}
 
 	// this method uses Ajax to load
 	// images list from some RESTFUL APIs which will
@@ -66,11 +73,13 @@
 								}
 
 								function next(){
+									if(load_bg_img._is_loading()) return;
 									// the next picture will be the id of li -1
 									next_random.next = $(theLi).attr('data-photo-id') - 1;
-									load_bg_img();
+									load_bg_img(true);
 									$(theLi).addClass('active');
 									$(theLi).siblings().removeClass('active');
+									reset_interval();
 								}
 							})
 							.appendTo('.photo-list-pointer > ul');
@@ -89,7 +98,7 @@
 	}
 
 	// load img
-	function load_bg_img(){
+	function load_bg_img(is_show_loading){
 
 		// the cache here is to keep the current loading img alive
 		// if the network condition of the user is not very well
@@ -97,11 +106,16 @@
 		// this could stop the browser to load the next img
 		var img_cache = load_bg_img._img_cache;
 
+		// check the loading status
+		load_bg_img._is_loading = function(){
+			return img_cache && !img_cache.prop('complete');
+		};
+
 		// start load
 		(function load(){
 
 			// skip if it's still loading
-			if(img_cache && !img_cache.prop('complete')){
+			if(load_bg_img._is_loading()){
 				return;
 			}
 
@@ -115,12 +129,14 @@
 			// fading in and out image when it's loaded
 			img_cache = $('<img/>');
 			img_cache.on('load', function () {
-				remove_loading();
+				hide_loading();
 
 				// display img
-				$('.cover-img > div')
-					.fadeOut()
-					.remove();
+				if(!is_show_loading){
+					$('.cover-img > div')
+						.fadeOut()
+						.remove();
+				}
 				$('<div/>')
 					.addClass('cover-img')
 					.css('background-image', 'url(' + img_cache.attr('src') + ')')
@@ -140,10 +156,15 @@
 			
 			// load next rand img
 			img_cache.attr('src',next_img['photo-url']);
+
+			if(is_show_loading && load_bg_img._is_loading()){
+				show_loading();
+			}
 		})();
 		
 		// keep the current img
 		load_bg_img._img_cache = img_cache;
+
 	}
 
 	// get next img
@@ -196,13 +217,15 @@
 		$('.cover-img').height($('.site-wrapper').height());
 	}
 
-	// remove loading block from DOM
-	function remove_loading(){
-		if( $('#loading_block').length > 0 ){
+	// hide loading block
+	function hide_loading(){
+		//if( $('#loading_block').length > 0 ){
 			// first time loaded, fadeout loading block
 			$('#loading_block').fadeOut(function(){
 				// remove loading block
-				$(this).remove();
+				// $(this).remove();
+				// change animation-iteration-count instead of remove the element
+				_change_animate_iteration('0');
 				// slide all the childrens of body
 				$('div.cover-container > div').slideDown(function(){
 					// fix overflow
@@ -211,7 +234,25 @@
 					sync_cover_img_height();
 				});
 			});
-		}
+		//}
+	}
+
+	// show loading block
+	function show_loading(){
+		$('.cover-img > div').fadeOut(function(){
+			//$('div.cover-container > div').slideUp(function(){
+				$(this).remove();
+				$('#loading_block').fadeIn(function(){
+					_change_animate_iteration('infinite');
+				});
+			//});
+		});
+	}
+
+	function _change_animate_iteration(count){
+		/*$('.container1 > div, .container2 > div, .container3 > div')
+			.css('animation-iteration-count', count)
+				.css('-webkit-animation-iteration-count', count);*/
 	}
 
 })();

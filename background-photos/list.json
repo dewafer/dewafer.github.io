@@ -10,7 +10,12 @@ permalink: /background-photos/json/
 		{% if post != site.categories.background-photos[0] %}
 		,
 		{% endif %}
-		{{ post | jsonify }}
+		{
+			"title": "{{ post.title }}"
+			,"url": "{{ post.url }}"
+			,"photo-url": "{{ post.photo-url }}"
+			,"photo-description": "{{ post.photo-description }}"
+		}
 		{% endfor %}
 
 	]
