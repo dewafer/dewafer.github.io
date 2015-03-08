@@ -73,10 +73,11 @@
 								}
 
 								function next(){
+									fixed_info_asider.disable();
 									if(load_bg_img._is_loading()) return;
 									// the next picture will be the id of li -1
 									next_random.next = $(theLi).attr('data-photo-id') - 1;
-									load_bg_img(true);
+									load_bg_img(true, function (){ if(fixed_info_asider.disabled){ fixed_info_asider.enable(); } });
 									$(theLi).addClass('active');
 									$(theLi).siblings().removeClass('active');
 									reset_interval();
@@ -98,7 +99,7 @@
 	}
 
 	// load img
-	function load_bg_img(is_show_loading){
+	function load_bg_img(is_show_loading, next){
 
 		// the cache here is to keep the current loading img alive
 		// if the network condition of the user is not very well
@@ -112,7 +113,7 @@
 		};
 
 		// start load
-		(function load(){
+		var load = function (){
 
 			// skip if it's still loading
 			if(load_bg_img._is_loading()){
@@ -132,11 +133,9 @@
 				hide_loading();
 
 				// display img
-				if(!is_show_loading){
-					$('.cover-img > div')
-						.fadeOut()
-						.remove();
-				}
+				$('.cover-img > div')
+					.fadeOut()
+					.remove();
 				$('<div/>')
 					.addClass('cover-img')
 					.css('background-image', 'url(' + img_cache.attr('src') + ')')
@@ -152,15 +151,20 @@
 				pointer.siblings().removeClass('active');
 				pointer.addClass('active');
 
+				if(next) { next(); }
+
 			});
 			
 			// load next rand img
 			img_cache.attr('src',next_img['photo-url']);
 
-			if(is_show_loading && load_bg_img._is_loading()){
-				show_loading();
-			}
-		})();
+		};
+
+		if(is_show_loading) {
+			show_loading(load);
+		}else{
+			load();
+		}
 		
 		// keep the current img
 		load_bg_img._img_cache = img_cache;
@@ -238,21 +242,24 @@
 	}
 
 	// show loading block
-	function show_loading(){
+	function show_loading(next){
 		$('.cover-img > div').fadeOut(function(){
 			//$('div.cover-container > div').slideUp(function(){
-				$(this).remove();
+				$('.cover-img > div').remove();
+				_change_animate_iteration('infinite');
 				$('#loading_block').fadeIn(function(){
-					_change_animate_iteration('infinite');
+					if(next){
+						next();
+					}
 				});
 			//});
 		});
 	}
 
 	function _change_animate_iteration(count){
-		/*$('.container1 > div, .container2 > div, .container3 > div')
+		$('.container1 > div, .container2 > div, .container3 > div')
 			.css('animation-iteration-count', count)
-				.css('-webkit-animation-iteration-count', count);*/
+				.css('-webkit-animation-iteration-count', count);
 	}
 
 })();

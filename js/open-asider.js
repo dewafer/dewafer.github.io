@@ -51,6 +51,22 @@ var fixed_info_asider = (function init(){
 		});
 	}
 
+	function disable(done){
+		close(function(){
+			start();
+			if(done) { done(); }
+		});
+	}
+
+	function enable(done){
+		end();
+		if(done) { done(); }
+	}
+
+	function disabled(){
+		return toggle.is_acting;
+	}
+
 	// if close button is on the screen then siderbar is open
 	function isOpen(){
 		return $('.fixed-info-button > span.glyphicon').hasClass('glyphicon-chevron-right');
@@ -85,6 +101,6 @@ var fixed_info_asider = (function init(){
 	$(window).resize(set());
 
 	// return the methods to be used in rand-bg-img.js
-	return { 'set': set, 'isOpen': isOpen, 'open': open, 'close': close };
+	return { 'set': set, 'isOpen': isOpen, 'open': open, 'close': close, 'disable': disable, 'enable': enable, 'disabled': disabled };
 
 })();
