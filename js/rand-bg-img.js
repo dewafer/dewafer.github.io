@@ -14,6 +14,9 @@
 	// interval id for stop
 	var img_interval_id;
 
+	// this flag controls the asider open-status after load
+	load_bg_img._open_asider_after_load = true;
+
 	// start
 	request_images(function done(){
 		if( images.length < 1){
@@ -29,6 +32,11 @@
 		load_bg_img();
 
 		reset_interval();
+
+		// reset interval when asider close
+		fixed_info_asider.mouseout(function (){
+			reset_interval();
+		});
 	});
 
 	function reset_interval(){
@@ -65,12 +73,15 @@
 								// go to the img if li is clicked
 
 								var theLi = this;
+								// there is no need to close the open
+								// siderbar because it will be automatically
+								// closed in the load_bg_img function
 								// close if info is open
-								if(fixed_info_asider.isOpen()){
-									fixed_info_asider.close(next);
-								} else {
+								//if(fixed_info_asider.isOpen()){
+								//	fixed_info_asider.close(next);
+								//} else {
 									next();
-								}
+								//}
 
 								function next(){
 									fixed_info_asider.disable();
@@ -112,7 +123,7 @@
 			return img_cache && !img_cache.prop('complete');
 		};
 
-		// start load
+		// load function
 		var load = function (){
 
 			// skip if it's still loading
@@ -120,10 +131,11 @@
 				return;
 			}
 
+			// close the sidebar before load
 			// skip if info is open
-			if(fixed_info_asider.isOpen()){
-				return;
-			}
+			//if(fixed_info_asider.isOpen()){
+			//	return;
+			//}
 
 			var next_img = next_rand_img();
 
@@ -151,23 +163,42 @@
 				pointer.siblings().removeClass('active');
 				pointer.addClass('active');
 
-				if(next) { next(); }
+				// open the sidebar if needed
+				if(load_bg_img._open_asider_after_load){
+					fixed_info_asider.open(next);
+				} else {
+					if(next) { next(); }
+				}
 
 			});
 			
 			// load next rand img
 			img_cache.attr('src',next_img['photo-url']);
 
+			// keep the current img
+			load_bg_img._img_cache = img_cache;
+
 		};
 
-		if(is_show_loading) {
-			show_loading(load);
-		}else{
-			load();
+		var start_load = function (){
+			if(is_show_loading) {
+				show_loading(load);
+			}else{
+				load();
+			}
+		};
+
+		// prevent load if is mouseover
+		if(fixed_info_asider.isMouseover()){
+			return;
 		}
-		
-		// keep the current img
-		load_bg_img._img_cache = img_cache;
+
+		// close the sidebar before load
+		if(fixed_info_asider.isOpen()){
+			fixed_info_asider.close(start_load);
+		} else {
+			start_load();
+		}
 
 	}
 
@@ -205,9 +236,6 @@
 			next_random.next = (next_random.next + 1) % max;
 			return next_random.shifted_list[next_random.next];
 		}
-
-
-
 	}
 
 	// test will print [0, 1, 2, 3, 4, <repeat from 0>...] to your console every 300ms

@@ -43,9 +43,9 @@ var fixed_info_asider = (function init(){
 
 	function close(done){
 		start();
-		// do the animation first then change the button
+		// change the button first then do the animation
+		$('.fixed-info-button > span.glyphicon').removeClass('glyphicon-chevron-right').addClass('glyphicon-chevron-left');
 		$('.fixed-info').animate({right: close_pos + 'px'}, function(){
-			$('.fixed-info-button > span.glyphicon').removeClass('glyphicon-chevron-right').addClass('glyphicon-chevron-left');
 			end();
 			if(done) { done(); }
 		});
@@ -93,14 +93,39 @@ var fixed_info_asider = (function init(){
 		$('.fixed-info-content').css('max-width', content_max_width);
 	}
 
+	// is mouse over?
+	function isMouseover(){
+		return isMouseover._mouseover;
+	}
+
+	// mouseout event
+	function mouseout(fn){
+		if(!mouseout._eventlist){
+			mouseout._eventlist = [];
+		}
+
+		mouseout._eventlist.push(fn);
+	}
+
 	// set position with no info
 	set();
 	// register toggle event for button
 	$('.fixed-info-button').on('click mouseenter',toggle);
 	// register window resize event
 	$(window).resize(set());
+	// register mouseover mouseout event for asider
+	$('.fixed-info').on('mouseover', function(){ isMouseover._mouseover = true; });
+	$('.fixed-info').on('mouseout', function(){
+		isMouseover._mouseover = false;
+		if(mouseout._eventlist && mouseout._eventlist.length > 0){
+			for(var idx in mouseout._eventlist){
+				mouseout._eventlist[idx]();
+			}
+		}
+	});
 
 	// return the methods to be used in rand-bg-img.js
-	return { 'set': set, 'isOpen': isOpen, 'open': open, 'close': close, 'disable': disable, 'enable': enable, 'disabled': disabled };
+	return { 'set': set, 'isOpen': isOpen, 'open': open, 'close': close, 'disable': disable, 
+			'enable': enable, 'disabled': disabled, 'isMouseover': isMouseover, 'mouseout': mouseout };
 
 })();
