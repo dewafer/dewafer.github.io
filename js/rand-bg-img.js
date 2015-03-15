@@ -126,12 +126,6 @@
 		// load function
 		var load = function (){
 
-			// skip if it's still loading
-			if(load_bg_img._is_loading()){
-				reset_interval();
-				return;
-			}
-
 			// close the sidebar before load
 			// skip if info is open
 			//if(fixed_info_asider.isOpen()){
@@ -140,10 +134,7 @@
 
 			var next_img = next_rand_img();
 
-			// fading in and out image when it's loaded
-			img_cache = $('<img/>');
-			img_cache.on('load', function () {
-				hide_loading();
+			var after_loaded = function () {
 
 				// display img
 				$('.cover-img > div')
@@ -171,6 +162,17 @@
 					if(next) { next(); }
 				}
 
+			};
+
+			// fading in and out image when it's loaded
+			img_cache = $('<img/>');
+			img_cache.on('load', function (){
+				hide_loading();
+				if(fixed_info_asider.isOpen()){
+					fixed_info_asider.close(after_loaded);
+				} else {
+					after_loaded();
+				}
 			});
 			
 			// load next rand img
@@ -183,23 +185,31 @@
 
 		var start_load = function (){
 			if(is_show_loading) {
-				show_loading(load);
-			}else{
+				// close the sidebar before load
+				//if(fixed_info_asider.isOpen()){
+				//	fixed_info_asider.close(function () {
+						// asider is closed and disabled before load
+						// if is_show_loading == true
+						show_loading(load);
+				//	});
+				//} 
+			} else {
 				load();
 			}
 		};
+
+
+		// skip if it's still loading
+		if(load_bg_img._is_loading()){
+			return;
+		}
 
 		// prevent load if is mouseover
 		if(fixed_info_asider.isMouseover()){
 			return;
 		}
 
-		// close the sidebar before load
-		if(fixed_info_asider.isOpen()){
-			fixed_info_asider.close(start_load);
-		} else {
-			start_load();
-		}
+		start_load();
 
 	}
 
