@@ -128,6 +128,7 @@
 
 			// skip if it's still loading
 			if(load_bg_img._is_loading()){
+				reset_interval();
 				return;
 			}
 
