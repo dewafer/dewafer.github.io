@@ -70,7 +70,7 @@
 						// create pointer for each img
 						var pointer = $('<li>');
 						pointer
-							.attr('data-photo-id', i)
+							.attr('data-photo-id', images.length - 1)
 							.on('click', function(){
 								// go to the img if li is clicked
 
