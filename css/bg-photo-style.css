@@ -15,6 +15,7 @@ footer {
   left: 0;
   right: 0;
   z-index: -1;
+  text-shadow: #EEE 0px 1px 0px ;
 }
 
 @media (max-width: 767px){
@@ -30,6 +31,10 @@ footer {
     right: 0; left: 0; 
   }
 
+}
+
+.content-wrapper {
+  text-shadow: #EEE 0px 1px 0px ;
 }
 
 @media (min-width: 768px) and (max-width: 1199px) {

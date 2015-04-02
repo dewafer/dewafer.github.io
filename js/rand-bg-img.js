@@ -9,7 +9,7 @@
 	var images = [];
 
 	// background change interval in seconds
-	var BG_CHG_INTERVAL_SEC = 7;
+	var BG_CHG_INTERVAL_SEC = 12;
 
 	// interval id for stop
 	var img_interval_id;
@@ -60,7 +60,9 @@
 				images = [];
 
 				for(var i=0; i< data['background-photos'].length; i++) {
-					if(data['background-photos'][i]['photo-url']){
+					if(data['background-photos'][i]['photo-url'] && 
+						(data['background-photos'][i]['show-on-homepage'] && data['background-photos'][i]['show-on-homepage'] == 'true')
+																	){
 						// load img list from json object
 						var img = data['background-photos'][i];
 						images.push(img);

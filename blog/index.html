@@ -1,6 +1,5 @@
 ---
 layout: blog
-permalink: /blog/
 title: Blog
 description: all my blogs
 menu-order: 50
@@ -19,12 +18,16 @@ about-title: What's this?
 
 {% for post in posts %}
 
+<!-- 显示所有的文章算了。 -->
+{% assign is_blog = true %}
+{% comment %}
 {% assign is_blog = false %}
 {% for cat in post.categories %}
   {% if cat == 'blog' %}
     {% assign is_blog = true %}
   {% endif %}
 {% endfor %}
+{% endcomment %}
 
 {% if is_blog %}
   <article class="blog-post">

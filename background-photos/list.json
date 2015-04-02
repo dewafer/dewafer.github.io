@@ -15,6 +15,7 @@ permalink: /background-photos/json/
 			,"url": "{{ post.url }}"
 			,"photo-url": "{{ post.photo-url }}"
 			,"photo-description": "{{ post.photo-description }}"
+			,"show-on-homepage": "{{ post.show-on-homepage }}"
 		}
 		{% endfor %}
 
