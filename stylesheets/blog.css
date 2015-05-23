@@ -148,8 +148,8 @@ body > div.container {
  */
 
 .blog-post {
-  margin-bottom: 40px;
-  padding-bottom: 80px;
+  margin-bottom: 52px;
+  padding-bottom: 48px;
   border-bottom-style: dashed;
   border-bottom-color: #AAA;
   border-bottom-width: 1px;
@@ -187,4 +187,8 @@ body > div.container {
 
 .blog-post-title > a {
   font-size: 25px;
+}
+
+.btn {
+  text-shadow: none;
 }

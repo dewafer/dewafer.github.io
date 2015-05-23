@@ -1,11 +1,11 @@
 ---
 layout: blog
-title: The Category
-description: All the articles under this category
+title: 分类
+description: 此分类下所有的文章
 permalink: /category/
 ---
 
-<script src="{{ '/js/jquery.query.js' | prepend: site.baseurl }}"></script>
+<script src="{{ '/javascripts/jquery.query.js' | prepend: site.baseurl }}"></script>
 <script language="javascript">
 	$(function(){
 		query_blog_posts('{{ site.baseurl }}/category/json/', 'cat');

@@ -6,18 +6,18 @@
     </div>
   {% elsif page.about %}
     <div class="sidebar-module sidebar-module-inset">
-    <h4>About</h4>
+    <h4>关于</h4>
     {{ page.about }}
     </div>
   {% elsif page.excerpt %}
     <div class="sidebar-module sidebar-module-inset">
-      <h4>Excerpt</h4>
+      <h4>摘要</h4>
       {{ page.excerpt | truncate: 250 | strip_html }}
     </div>
   {% endif %}
 
   <div class="sidebar-module">
-    <h4>Categories</h4>
+    <h4>分类</h4>
     <ol class="list-unstyled">
       {% for category in site.categories %}
         <li><a href="/category/?cat={{ category | first | uri_escape }}">{{ category | first }}</a></li>
@@ -26,7 +26,7 @@
   </div>
 
   <div class="sidebar-module">
-    <h4>Tags</h4>
+    <h4>标签</h4>
     <ol class="list-unstyled">
       {% for tag in site.tags %}
         <li><a href="/tag/?tag={{ tag | first | uri_escape}}">{{ tag | first }}</a></li>
@@ -35,7 +35,7 @@
   </div>
 
   <div class="sidebar-module">
-    <h4>Links</h4>
+    <h4>链接</h4>
     <ol class="list-unstyled">
 
       {% for link in site.data.links %}

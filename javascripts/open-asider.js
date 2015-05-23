@@ -110,7 +110,7 @@ var fixed_info_asider = (function init(){
 	// set position with no info
 	set();
 	// register toggle event for button
-	$('.fixed-info-button').on('click mouseenter',toggle);
+	$('.fixed-info-button').on('click',toggle);
 	// register window resize event
 	$(window).resize(set());
 	// register mouseover mouseout event for asider

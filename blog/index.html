@@ -1,10 +1,10 @@
 ---
 layout: blog
-title: Blog
-description: all my blogs
+title: 博客
+description: 所有的博客文章
 menu-order: 50
-about: This page contains all my blogs
-about-title: What's this?
+about: 所有的文章都在这里了。
+about-title: 这是啥？
 ---
 
 {% assign posts = false %}
@@ -15,10 +15,10 @@ about-title: What's this?
   {% assign posts = site.posts %}
 {% endif %}
 
-
+<!-- 显示所有的文章算了。 -->
 {% for post in posts %}
 
-<!-- 显示所有的文章算了。 -->
+
 {% assign is_blog = true %}
 {% comment %}
 {% assign is_blog = false %}
@@ -36,11 +36,9 @@ about-title: What's this?
 
     {{ post.excerpt }}
 
-    {% if post.content contains site.excerpt_separator %}
-      <p>
-      <a class="btn btn-default" href="{{ post.url | prepend: site.baseurl }}" role="button">Read more <span class="glyphicon glyphicon-chevron-right"><span/></a>
-      </p>
-    {% endif %}
+      <div class="pull-right">
+      <a class="btn btn-primary" href="{{ post.url | prepend: site.baseurl }}" role="button">阅读全文 <span class="glyphicon glyphicon-chevron-right"><span/></a>
+      </div>
 
   </article><!-- /.blog-post -->
 {% endif %}

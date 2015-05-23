@@ -16,9 +16,7 @@ permalink: /category/json/
 				, "title":"{{ post.title }}"
 				, "meta":"{{ post.date | date:"%F" }}{% if post.author %} by {{ post.author }}{% endif %}{% if post.meta %} {{ post.meta }}{% endif %}"
 				, "excerpt":{{ post.excerpt | jsonify }}
-				{% if post.content contains site.excerpt_separator %}
-				, "more": "<p><a class=\"btn btn-default\" href=\"{{ post.url | prepend: site.baseurl }}\" role=\"button\">more</a></p>"
-				{% endif %}
+				, "more": "<div class=\"pull-right\"><a class=\"btn btn-primary\" href=\"{{ post.url | prepend: site.baseurl }}\" role=\"button\">阅读全文</a></div>"
 				}
 			{% endfor %}
 			]

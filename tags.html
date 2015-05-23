@@ -1,11 +1,11 @@
 ---
 layout: blog
-title: The Tag
-description: All the articles have this tag attached
+title: 标签
+description: 此标签下所有的文章
 permalink: /tag/
 ---
 
-<script src="{{ '/js/jquery.query.js' | prepend: site.baseurl }}"></script>
+<script src="{{ '/javascripts/jquery.query.js' | prepend: site.baseurl }}"></script>
 <script language="javascript">
 	$(function(){
 		query_blog_posts('{{ site.baseurl }}/tag/json/', 'tag');

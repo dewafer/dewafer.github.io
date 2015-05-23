@@ -1,5 +1,5 @@
 ---
-title: Sandbox
+title: 沙盒
 permalink: /sandbox-redirect/
 menu-order: 30
 ---
