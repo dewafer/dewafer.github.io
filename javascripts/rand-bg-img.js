@@ -15,7 +15,7 @@
 	var img_interval_id;
 
 	// this flag controls the asider open-status after load
-	load_bg_img._open_asider_after_load = true;
+	load_bg_img._open_asider_after_load = false;
 
 	// start
 	request_images(function done(){
