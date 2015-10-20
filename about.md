@@ -2,7 +2,7 @@
 layout: blog-page
 title: 关于
 permalink: /about/
-# menu-order: 20
+menu-order: 20
 about: 这是关于我的页面。
 published: true
 ---
