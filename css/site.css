@@ -8,9 +8,14 @@
     }
     div {
         position: relative;
-        top: 62%;
-        left: 54%;
-        display: none;
+        top: 53%;
+        left: 57%;
+        /*display: none;*/
+        width: 450px;
+    }
+    a, a:hover, a:visited, a:active {
+        color: rgb(230, 219, 116);
+        text-decoration: none;
     }
     .java-keyword {
         color: rgb(249, 38, 114);
@@ -29,4 +34,13 @@
     }
     .java-literal {
         color: rgb(230, 219, 116);
+    }
+    .cursor {
+        border-right: solid 1px;
+    }
+    .hire-me-mail {
+       display: none;
+    }
+    .my-github-link {
+        display: none;
     }
