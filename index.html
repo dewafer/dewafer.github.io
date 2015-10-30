@@ -1,127 +1,31 @@
----
-title: 首页
-permalink: /
-menu-order: 0
----
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="dewafer个人站">
-    <meta name="author" content="dewafer">
-    <!--<link rel="icon" href="../../favicon.ico">-->
-
-    <title>dewafer</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <!-- <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
-
-    <!-- Custom styles for this template -->
-    <link href="/stylesheets/cover.css" rel="stylesheet">
-    <link href="/stylesheets/loading.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    {% include bdstat.html %}
-
-  </head>
-
-  <body>
-
-    <div class="cover-img holderjs"></div>
-
-    <div class="site-wrapper">
-
-      <div class="site-wrapper-inner">
-
-        <div class="cover-container">
-
-          <div class="masthead clearfix">
-            <div class="inner">
-              <!-- <h3 class="masthead-brand"><img data-src="holder.js/23x23/sky/text:D"></h3> -->
-              <h3 class="masthead-brand">dewafer</h3>
-              <ul class="nav masthead-nav">
-                {% include pages-as-menu.html use_li=true active_class="active" pre_class="" %}
-              </ul>
-            </div>
-          </div>
-
-          <div class="inner cover">
-<!--        <h1 class="cover-heading">This is a web site hosted on GitHub.</h1>
-            <p class="lead">Hi there! <code>dewafer</code> is my code name, and I want to build a site to introduce myself. But it looks like that I need more time to construct it. So, while I'm working on this site, please enjoy these photos. Just wait for 30 seconds and see what will happen.</p> 
-            <p class="lead">
-              <a href="/about/" class="btn btn-lg btn-warning">I'm still working on it...</a>
-            </p>
--->            
-          </div>
-
-          <div class="fixed-info">
-                <div class="fixed-info-button" >
-                  <span class="glyphicon glyphicon-chevron-left"></span>
-                </div>
-                <div class="fixed-info-button-gap"><!--empty cell--></div>
-                <div class="fixed-info-content">
-                  <!--哇塞，被你发现啦！我是条羞答答的侧边栏(ˇˍˇ)-->
-                  <a href="/about/">
-                  抱歉，暂时木有漂娘的照片~<br>
-                  戳这里看全文
-                  </a>
-                </div>
-          </div>
-
-          <div class="mastfoot">
-            <div class="inner">
-              <div class="photo-list-pointer"><ul>
-                <!-- <li class="active"></li><li></li> -->
-              </ul></div>
-              <p>Photo by <a href="https://github.com/dewafer">dewafer</a>. 
-                <br/><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a></p>
-            </div>
-          </div>
-
-        </div>
-
-    <div id="loading_block" class="spinner">
-      <div class="spinner-container container1">
-        <div class="circle1"></div>
-        <div class="circle2"></div>
-        <div class="circle3"></div>
-        <div class="circle4"></div>
-      </div>
-      <div class="spinner-container container2">
-        <div class="circle1"></div>
-        <div class="circle2"></div>
-        <div class="circle3"></div>
-        <div class="circle4"></div>
-      </div>
-      <div class="spinner-container container3">
-        <div class="circle1"></div>
-        <div class="circle2"></div>
-        <div class="circle3"></div>
-        <div class="circle4"></div>
-      </div>
-    </div><!-- loading block end -->
-
-      </div>
-
+<html>
+<head>
+<title>嗯嗯</title>
+<style type="text/css">
+    html {
+        /*height: 100%;*/
+    }
+    body {
+        background-color: rgb(39, 40, 34);
+        color: white;
+        position: relative;
+    }
+    div {
+        position: relative;
+        top: 73%;
+        left: 66%;
+        display: none;
+    }
+</style>
+<body>
+    <div>
+        飘雪的冬天
     </div>
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="/javascripts/ie10-viewport-bug-workaround.js"></script>
-    <script src="/javascripts/holder.js"></script>
-    <script src="/javascripts/rand-bg-img.js"></script>
-    <script src="/javascripts/open-asider.js"></script>
-  </body>
+</body>
+<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('div').delay(750).slideDown();
+    });
+</script>
 </html>
