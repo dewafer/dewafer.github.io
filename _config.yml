@@ -6,7 +6,7 @@ email: dewafer@gmail.com
 header-img: img/home-bg.jpg
 description: "懒惰成翔的常年不更新的dewafer的个人博客"
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://dewafer.com" # the base hostname & protocol for your site
+url: "http://www.dewafer.com" # the base hostname & protocol for your site
 #twitter_username: dewafer
 github_username:  dewafer
 #facebook_username: dewafer
