@@ -1,0 +1,26 @@
+exclude: ["README.md", "Gemfile", "Gemfile.lock", "less","node_modules","Gruntfile.js","package.json"]
+
+# Site settings
+title: 努力写个博客
+email: dewafer@gmail.com
+header-img: img/home-bg.jpg
+description: "懒惰成翔的常年不更新的dewafer的个人博客"
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://dewafer.com" # the base hostname & protocol for your site
+#twitter_username: dewafer
+github_username:  dewafer
+#facebook_username: dewafer
+weibo_username: dewafer
+
+author: dewafer
+author_url: "https://github.com/dewafer"
+
+# Build settings
+markdown: kramdown
+highlighter: pygments
+permalink: pretty
+
+# Enable pagination
+paginate: 10
+
+gems: [jekyll-paginate]
