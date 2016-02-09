@@ -17,7 +17,8 @@ author_url: "https://github.com/dewafer"
 
 # Build settings
 markdown: kramdown
-highlighter: pygments
+#highlighter: pygments
+highlighter: rouge
 permalink: pretty
 
 # Enable pagination
