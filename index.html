@@ -11,11 +11,12 @@ description: "这是 懒惰成翔的 常年不更新的 dewafer的 个人博客�
         </h2>
         {% if post.subtitle %}
         <h3 class="post-subtitle">
+            <i class="fa fa-hashtag"></i>
             {{ post.subtitle }}
         </h3>
         {% endif %}
     </a>
-    <p class="post-meta">{{ post.date | date: "%Y/%-m/%-d" }}<!--，作者：{% if post.author %}{{ post.author }}{% else %}{{ site.author }}{% endif %}--></p>
+    <p class="post-meta"><i class="fa fa-terminal"></i> {{ post.date | date: "%Y/%-m/%-d" }}<!--，作者：{% if post.author %}{{ post.author }}{% else %}{{ site.author }}{% endif %}--></p>
 </div>
 <hr>
 {% endfor %}

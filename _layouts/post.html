@@ -1,18 +1,24 @@
 ---
 layout: default
 ---
-
+{% capture header-img-url %}
+{% if page.header-img contains 'http:' or page.header-img contains 'https:' %}
+{{ page.header-img }}
+{% else %}
+{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}
+{% endif %}
+{% endcapture %}
 <!-- Post Header -->
-<header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">
+<header class="intro-header" style="background-image: url('{{ header-img-url | strip_newlines }}')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
                     <h1>{{ page.title }}</h1>
                     {% if page.subtitle %}
-                    <h2 class="subheading">{{ page.subtitle }}</h2>
+                    <h2 class="subheading"><i class="fa fa-hashtag"></i> {{ page.subtitle }}</h2>
                     {% endif %}
-                    <span class="meta">{{ page.date | date: "%Y/%-m/%-d" }}<!--，作者：{% if page.author %}{{ page.author }}{% else %}{{ site.author }}{% endif %}--></span>
+                    <span class="meta"><i class="fa fa-terminal"></i> {{ page.date | date: "%Y/%-m/%-d" }}<!--，作者：{% if page.author %}{{ page.author }}{% else %}{{ site.author }}{% endif %}--></span>
                 </div>
             </div>
         </div>
@@ -27,7 +33,7 @@ layout: default
 
 				{{ content }}
 
-                <hr>
+                <!-- <hr> -->
 
                 <ul class="pager">
                     {% if page.previous.url %}

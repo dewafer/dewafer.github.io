@@ -1,0 +1,22 @@
+.post-preview-card {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  min-height: 240px;
+  padding: 5px;
+  margin:15px auto 15px auto;
+}
+.post-preview-card>a>.post-title {
+  margin-top: 5px;
+}
+.post-preview-card:hover {
+  box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
+}
+.intro-header {
+  background-blend-mode: soft-light;
+}
+.intro-header .post-heading .meta {
+  font-style: normal;;
+}
+.post-preview > .post-meta {
+  font-style: normal;
+}

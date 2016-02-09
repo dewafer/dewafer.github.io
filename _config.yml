@@ -21,6 +21,6 @@ highlighter: pygments
 permalink: pretty
 
 # Enable pagination
-paginate: 10
+paginate: 12
 
 gems: [jekyll-paginate]
