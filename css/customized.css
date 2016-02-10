@@ -20,3 +20,16 @@
 .post-preview > .post-meta {
   font-style: normal;
 }
+.pager {
+  margin-top: 120px;
+}
+.pager::before {
+  content: " - { 完 }  - ";
+  margin: 0px auto 25px auto;
+  color: rgba(0, 0, 0, 0.1);
+  font-size: 1.5em;
+  font-weight: bold;
+}
+article p {
+  text-indent: 2em;
+}

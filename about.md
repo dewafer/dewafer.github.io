@@ -6,8 +6,10 @@ header-img: "img/about-bg.jpg"
 
 ---
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>
+// TODO 写一篇“关于”，但又不能太关于。
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!</p>
+我，很懒，真的很懒，非常非常懒的单身狗程序猿。
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum molestiae debitis nobis, quod sapiente qui voluptatum, placeat magni repudiandae accusantium fugit quas labore non rerum possimus, corrupti enim modi! Et.</p>
+作为一名非常懒惰的单身狗程序员，我也有梦想，我的梦想是懒能帮助我们科学发展，社会进步，世界和平；能消除饥饿，净化环境，节约能源；能爱国爱民，团结互助，尊老爱幼；能子承父业，家庭兴旺，国家繁荣……
+
+……
