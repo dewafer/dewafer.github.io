@@ -30,6 +30,6 @@
   font-size: 1.5em;
   font-weight: bold;
 }
-article p {
+article.post p {
   text-indent: 2em;
 }
