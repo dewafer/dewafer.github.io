@@ -1,0 +1,16 @@
+{
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	],
+
+	"settings":
+	{
+		"jekyll":
+		{
+			"jekyll_auto_find_paths":true
+		}
+	}
+}

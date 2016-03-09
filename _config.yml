@@ -1,4 +1,4 @@
-exclude: ["README.md", "Gemfile", "Gemfile.lock", "less","node_modules","Gruntfile.js","package.json"]
+exclude: ["README.md", "Gemfile", "Gemfile.lock", "less","node_modules","Gruntfile.js","package.json","dewafer-site.sublime-project"]
 
 # Site settings
 title: 努力写个博客
