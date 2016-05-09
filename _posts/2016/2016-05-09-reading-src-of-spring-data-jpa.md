@@ -17,14 +17,14 @@ header-img: http://ww4.sinaimg.cn/large/51d3f408gw1etizhx8aslj21hc0zctel.jpg
 
 一个方法名查询推导（Query Derivation）示例：
 
-```
+
 {% highlight java %}
   public interface CustomerRepository extends Repository<Customer, Long> {
     // 这个方法没有实现，但是却能正确猜测两个参数分别是Customer的两个属性。
     List<Customer> findByEmailAndLastname(EmailAddress email, String lastname);
   }
 {% endhighlight %}
-```
+
 
 这个接口中的`findByEmailAndLastname`方法没有任何实现，但却能正确完成任务，这是怎么做到的呢？
 
@@ -43,7 +43,7 @@ header-img: http://ww4.sinaimg.cn/large/51d3f408gw1etizhx8aslj21hc0zctel.jpg
 
 `FactoryBean.getObject()`方法由[`RepositoryFactoryBeanSupport`](https://github.com/spring-projects/spring-data-commons/blob/master/src/main/java/org/springframework/data/repository/core/support/RepositoryFactoryBeanSupport.java)类实现，调用了`RepositoryFactoryBeanSupport.initAndReturn()`方法，在该方法中可以看到调用了`this.factory.getRepository(...)`方法来初始化仓库并将其保持在域中。那么问题来了，`this.factory`从哪里来的呢？
 
-```
+
 {% highlight java %}
   /**
    * Returns the previously initialized repository proxy or creates and returns the proxy if previously uninitialized.
@@ -62,11 +62,11 @@ header-img: http://ww4.sinaimg.cn/large/51d3f408gw1etizhx8aslj21hc0zctel.jpg
     return this.repository;
   }
 {% endhighlight %}
-```
+
 
 在[`RepositoryFactoryBeanSupport`](https://github.com/spring-projects/spring-data-commons/blob/master/src/main/java/org/springframework/data/repository/core/support/RepositoryFactoryBeanSupport.java)中搜索`factory`就会看到，原来`this.factory`是在`afterPropertiesSet()`方法中，由抽象方法`createRepositoryFactory()`提供的。
 
-```
+
 {% highlight java %}
   /*
    * (non-Javadoc)
@@ -91,11 +91,11 @@ header-img: http://ww4.sinaimg.cn/large/51d3f408gw1etizhx8aslj21hc0zctel.jpg
     }
   }
 {% endhighlight %}
-```
+
 
 在[`TransactionalRepositoryFactoryBeanSupport`](https://github.com/spring-projects/spring-data-commons/blob/master/src/main/java/org/springframework/data/repository/core/support/TransactionalRepositoryFactoryBeanSupport.java)中可以看到，`createRepositoryFactory()`方法被实现并被标记为`final`。从实现中可以看到它又调用了抽象方法`doCreateRepositoryFactory()`来获取`RepositoryFactorySuport`，然后为该factory增加了`exceptionPostProcessor`和`txPostProcessor`两个PostProcessor。从名称上可以获悉这两个PostProcessor分别负责转换例外（将JPA例外转换成Spring专有的）和事务管理。
 
-```
+
 {% highlight java %}
   /**
    * Delegates {@link RepositoryFactorySupport} creation to {@link #doCreateRepositoryFactory()} and applies the
@@ -113,12 +113,12 @@ header-img: http://ww4.sinaimg.cn/large/51d3f408gw1etizhx8aslj21hc0zctel.jpg
     return factory;
   }
 {% endhighlight %}
-```
+
 
 在[`JpaRepositoryFactoryBean`](https://github.com/spring-projects/spring-data-jpa/blob/master/src/main/java/org/springframework/data/jpa/repository/support/JpaRepositoryFactoryBean.java)中可以看到，`doCreateRepositoryFactory`方法被实现。该方法使用注入的`EntityManager`来new了一个[`JpaRepositoryFactory`](https://github.com/spring-projects/spring-data-jpa/blob/master/src/main/java/org/springframework/data/jpa/repository/support/JpaRepositoryFactory.java)，没错，这个类和前面一个比少了一个Bean。
 
 
-```
+
 {% highlight java %}
   /*
    * (non-Javadoc)
@@ -141,12 +141,12 @@ header-img: http://ww4.sinaimg.cn/large/51d3f408gw1etizhx8aslj21hc0zctel.jpg
     return new JpaRepositoryFactory(entityManager); // 没错就这个少了Bean的factory
   }
 {% endhighlight %}
-```
+
 
 [`JpaRepositoryFactory`](https://github.com/spring-projects/spring-data-jpa/blob/master/src/main/java/org/springframework/data/jpa/repository/support/JpaRepositoryFactory.java)这个没有Bean的工厂类继承了[`RepositoryFactorySupport`](https://github.com/spring-projects/spring-data-commons/blob/master/src/main/java/org/springframework/data/repository/core/support/RepositoryFactorySupport.java)类（在spring-data-commons项目中），和`JpaRepositoryFactoryBean`的继承结构如出一辙。在`RepositoryFactorySupport`这个类的源代码中，我们可以找到`getRepository`方法的实现。
 
 
-```
+
 {% highlight java %}
   /**
    * Returns a repository instance for the given interface backed by an instance providing implementation logic for
@@ -193,7 +193,7 @@ header-img: http://ww4.sinaimg.cn/large/51d3f408gw1etizhx8aslj21hc0zctel.jpg
     return (T) result.getProxy(classLoader);
   }
 {% endhighlight %}
-```
+
 
 没错，关键缺失的一环就在这里。在这个方法中可以看到，首先它获取了Repository的各种信息，包括metadata、customImplementation、information等，
 然后使用了`ProxyFactory`，并且为这个`ProxyFactory`注册了几个`Advice`，最后通过`getProxy`方法创建了一个Repository的代理。
