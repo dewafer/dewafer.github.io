@@ -71,7 +71,7 @@
 
 <!-- google-analytics -->
 <script>
-if (document.location.hostname.search("{{ site.url }}") !== -1) {
+if (document.location.hostname.search("{{ site.hostname }}") !== -1) {
 
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -87,7 +87,7 @@ if (document.location.hostname.search("{{ site.url }}") !== -1) {
 <!-- baidu tongji -->
 <script>
 var _hmt = _hmt || [];
-if (document.location.hostname.search("{{ site.url }}") !== -1) {
+if (document.location.hostname.search("{{ site.hostname }}") !== -1) {
   (function() {
     var hm = document.createElement("script");
     hm.src = "//hm.baidu.com/hm.js?27f648bd35c15807c3dd590d1f9e91bf";
