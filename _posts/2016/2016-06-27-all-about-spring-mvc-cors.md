@@ -1,8 +1,7 @@
 ---
 layout: post
 title: Spring MVC的跨域资源共享（CORS）的使用方法及实现机制
-subtitle: CORS防坑指南
-publish: false
+subtitle: Spring MVC的CORS防坑指南
 ---
 
 ## Spring MVC的CORS配置方式
