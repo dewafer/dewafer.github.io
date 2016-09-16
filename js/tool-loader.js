@@ -1,3 +1,6 @@
+---
+---
+/* jekyll-babel should process this file */
 (function(){
   'use strict';
   let backup;

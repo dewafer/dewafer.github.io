@@ -25,4 +25,6 @@ permalink: pretty
 # Enable pagination
 paginate: 12
 
-gems: [jekyll-paginate]
+gems:
+  - jekyll-paginate
+  - jekyll-babel
