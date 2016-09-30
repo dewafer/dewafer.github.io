@@ -3,7 +3,7 @@
 /* jekyll-babel should process this file */
 (function(){
 
-  document.body.onload(() => {
+  $(() => {
     'use strict';
 
     $('#image-input').on('change', (event) => {

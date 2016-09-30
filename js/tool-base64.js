@@ -3,7 +3,7 @@
 /* jekyll-babel should process this file */
 (function(){
 
-  document.body.onload(() => {
+  $(() => {
     'use strict';
     // Using btoa/atob, see: https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/btoa#Unicode_strings
     // ucs-2 string to base64 encoded ascii

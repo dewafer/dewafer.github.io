@@ -3,7 +3,7 @@
 /* jekyll-babel should process this file */
 (function(){
 
-  document.body.onload(() => {
+  $(() => {
     'use strict';
 
     $('#holder-js-data-url').val($('#holder-js-preview').attr('data-src'));

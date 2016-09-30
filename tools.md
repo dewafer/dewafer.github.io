@@ -112,7 +112,6 @@ header-img: "img/contact-bg.jpg"
 </form>
 
 
-<script src="{{ "/js/tool-loader.js " | prepend: site.baseurl }}"></script>
 <script src="{{ "/js/tool-uuid-generator.js " | prepend: site.baseurl }}"></script>
 <script src="{{ "/js/tool-base64.js" | prepend: site.baseurl }}"></script>
 <script src="{{ "/js/tool-image-to-dataurl.js" | prepend: site.baseurl }}"></script>

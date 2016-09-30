@@ -3,7 +3,7 @@
 /* jekyll-babel should process this file */
 (function(){
 
-  document.body.onload(() => {
+  $(() => {
       'use strict';
 
       $('#gen-random-uuid').on('click', (event)=>{ $('#random-uuid-text').val(genRandomUUID()) });
