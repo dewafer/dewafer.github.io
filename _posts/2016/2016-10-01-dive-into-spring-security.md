@@ -7,12 +7,16 @@ subtitle: 无证程序员带你深入了解 Spring Security
 ### 0. 前言
 
 本文将从宏观的架构的角度带你深入了解Spring Security。读者可以通过本文了解到Spring Security的基础构建，以及其实现安全机制的基本架构等。
+
 本文不会讲解Spring Security的使用方式，不会讲解Web安全的概念原理，也不会解释设计模式等深奥的原理，而是通过从十万八千里的高空，从宏观角度带您领略Spring Security的微妙之处。
+
 通过阅读本文，读者可以了解到Spring Security的基础构建，以及各基础构建之间是如何互相协作的。了解了这些基础知识之后，读者可以更好地理解Spring Security的运作原理，从而使得Spring Security的使用更为方便明了，遇到问题时解决也更容易，还可以轻松地针对其进行客制化的改造。
 
 ### 1. 什么是 Spring Security
 
-Spring Security，人如其名，是一款基于Spring Framework的安全框架，原名Acegi Security，最早于2003年起源于Spring社区，由那时的社区成员们尝试着使用基于Spring的bean来实现安全机制，但并未正式发布，直到2004年3月才正式在SourceForge上成立项目，当时命名为"The Acegi Security System for Spring"。经过多年发展，Acegi Security于2007年末正式归为Spring Framework的正式子项目，并改名为Spring Security。自那以后Spring Security有了长远发展，现已成为一款基于Spring Framework的各标准通吃的安全框架。Spring Security支持的标准非常多，大家可以在[Spring Security的官方文档](http://docs.spring.io/spring-security/site/docs/4.1.3.RELEASE/reference/htmlsingle/#what-is-acegi-security)上看到，我就不再这里赘述了。
+Spring Security，人如其名，是一款基于Spring Framework的安全框架，原名Acegi Security，最早于2003年起源于Spring社区，由那时的社区成员们尝试着使用基于Spring的bean来实现安全机制，但并未正式发布，直到2004年3月才正式在SourceForge上成立项目，当时命名为"The Acegi Security System for Spring"。
+
+经过多年发展，Acegi Security于2007年末正式归为Spring Framework的正式子项目，并改名为Spring Security。自那以后Spring Security有了长远发展，现已成为一款基于Spring Framework的各标准通吃的安全框架。Spring Security支持的标准非常多，大家可以在[Spring Security的官方文档](http://docs.spring.io/spring-security/site/docs/4.1.3.RELEASE/reference/htmlsingle/#what-is-acegi-security)上看到，我就不再这里赘述了。
 
 如果你熟悉Spring Framework，那么使用Spring Security将易如反掌；如果你不熟悉Spring Framework，虽然Spring Security也可以与其他非Spring框架一起使用，但还是非常推荐你去了解一下Spring Framework的。作为Java EE的龙头老大的Spring，还是很值得一位专业的Java EE开发人员去深入了解一下的。
 
@@ -90,8 +94,6 @@ Spring Security提供了两个比较常用的实现，一个是In-Memory的实�
 如果你使用JPA，则需要自己实现`UserDetailsService`。
 
 #### 2.2. 区别 `Authentication`（鉴权） 和 `Authorization`（授权）
-
-// TODO: 区别 `Authentication` 和 `Authorization`
 
 在继续了解Spring Security之前，我觉得很有必要先来了解一下鉴权（`Authentication`）和授权（`Authorization`）的区别。
 
