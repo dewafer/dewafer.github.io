@@ -18,13 +18,22 @@ published: false
 
 譬如，在Web环境中，用户访问了`/secured/user-details`这个地址，一个包含这个地址信息的`FilterInvocation`被传入`AccessDecisionManager`，`AccessDecisionManager`通过`FilterInvocation`这个“安全对象”得知用户访问的是`/secured/user-details`这个地址，并且通过传入的`ConfigAttribute`安全属性列表得知这个地址只能由拥有`ROLE_USER`角色的用户才能访问，此时`AccessDecisionManager`针对传入的`Authentication`进行检查，查看当前用户是否拥有`ROLE_USER`角色，如果没有则抛出`AccessDeniedException`；如果有则放行。当然真正的过程比这要再复杂一些，我们稍后解释。
 
-来我们总结一下。
-
 #### 4.2. 抽象流程
 
-// TODO: 继续
+来，我们总结一下，Spring Security 授权的整个流程大致过程应该是这样的：
+
+1. 首先，`AbstractSecurityInterceptor`查找并获取与当前查询有关的所有安全属性`ConfigAttribute`
+2. 然后将安全对象、当前的`Authentication`对象已经所有获取到的安全属性一并提交给`AccessDecisionManager`来做授权判断。
+3. 在某些情况下，当前的`Authentication`被替换成其他对象。
+4. 如果授权成功，则让安全对象的执行操作继续。
+5. 如果有配置`AfterInvocationManage`，则在安全对象执行完成后调用。如果在安全对象执行期间有抛出异常，则不会被调用。
+
+// TODO: 流程图
+
 
 #### 4.3. 安全属性 `ConfigAttribute`
+
+
 
 #### 4.4. 权限 Authority
 
