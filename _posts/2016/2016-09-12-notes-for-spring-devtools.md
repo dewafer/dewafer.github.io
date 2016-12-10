@@ -7,6 +7,7 @@ subtitle: 又是一篇学习笔记
 ### Spring devtools 使用方法：
 
 Maven:
+
 ```xml
 <dependencies>
     <dependency>
@@ -18,6 +19,7 @@ Maven:
 ```
 
 Gradle:
+
 ```
 dependencies {
     compile("org.springframework.boot:spring-boot-devtools")

@@ -24,6 +24,7 @@ subtitle: 又是一篇学习笔记
 * 依赖排除（Dependency exclusion）指引用其他依赖包时，可以排除其他依赖包所依赖的包。可以参考[springframework排除commons-loggins](http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#overview-not-using-commons-logging)的用法。
 * maven所使用的传输协议（http, ftp, ssh等）是靠[maven wagon](http://maven.apache.org/wagon/) 实现的。
 * 在settings.xml文件中，使用下面的 配置服务器的用户名密码。（明文密码）
+
 ```xml
     <server>
         <id>server-id/repo-id/url-host</id>
@@ -31,35 +32,42 @@ subtitle: 又是一篇学习笔记
         <password>my_password</password>
     </server>
 ```
+
 * 加密settings中的明文密码：（[官方教程](http://maven.apache.org/guides/mini/guide-encryption.html)）
   1. 使用`mvn -emp my_master_password`生成主密码秘钥
   2. 在`settings-security.xml`中添加：（如果没有则创建，同`settings.xml`所在位置）
-  ```xml
-  <settingsSecurity>
-      <master>
-      {上一步生成的key，包括外面的花括号}花括号外可以写注释会被忽略
-      <master>
-  </settingsSecurity>
-  ```
+
+```xml
+<settingsSecurity>
+    <master>
+    {上一步生成的key，包括外面的花括号}花括号外可以写注释会被忽略
+    <master>
+</settingsSecurity>
+```
+
   3. 使用`mvn -ep my_password`获得加密的服务器密码。
   4. 修改`settings.xml`
-  ```xml
-  <server>
-      <id>server-id/repo-id/url-host</id>
-      <username>my_username</username>
-      <password>
-          {上一步生成的key，包括外面的花括号}
-     </password>
-  </server>
-  ```
+
+```xml
+<server>
+    <id>server-id/repo-id/url-host</id>
+    <username>my_username</username>
+    <password>
+        {上一步生成的key，包括外面的花括号}
+   </password>
+</server>
+```
+
   5. 如果要指定其他位置的`settings-security.xml`，在`settings.xml`同位置下的`settings-security.xml`中配置：
-  ```xml
-  <settingsSecurity>
-      <relocation>
-          /path/to/other/settings-security.xml
-      </relocation>
-  </settingsSecurity>
-  ```
+
+```xml
+<settingsSecurity>
+    <relocation>
+        /path/to/other/settings-security.xml
+    </relocation>
+</settingsSecurity>
+```
+
 * maven scm插件可以通过版本管理系统如svn、git、cvs等来管理代码，参考[官方教程](http://maven.apache.org/scm/maven-scm-plugin/)
 * Local repo location：通过`settings.xml`中的`<localRepository/>`指定，默认`~/.m2/repository`
 * 通过`settings.xml`中的`<mirror>`类指定镜像服务器。镜像服务器镜像指定的repo仓库，而不是增加repo。通过指定`<mirrorOf>repo-id/*/!repo-id/repo1,repo2/external:*/...</mirrorOf>`指定要镜像的仓库。[官方参考](https://maven.apache.org/guides/mini/guide-mirror-settings.html#Advanced_Mirror_Specification)
