@@ -17,7 +17,7 @@ header-img: http://ww4.sinaimg.cn/large/51d3f408gw1etizhx8aslj21hc0zctel.jpg
 
 ![spring-data-jpa源码总结图](/uploads/2017/2017-02-21-JpaRepoUML.png)
 
-下载[本图的源文件](/uploads/2017/2017-02-21-JpaRepoUML.mdj)
+[点此看大图](/uploads/2017/2017-02-21-JpaRepoUML.png)或者下载[本图的源文件](/uploads/2017/2017-02-21-JpaRepoUML.mdj)
 
 上两篇文章的链接在这里：
 
