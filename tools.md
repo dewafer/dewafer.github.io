@@ -110,7 +110,8 @@ description: "一点点实用的小公举。"
   </div>
 </form>
 
-
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.4/holder.min.js"></script>
 <script src="{{ "/js/tool-uuid-generator.js " | prepend: site.baseurl }}"></script>
 <script src="{{ "/js/tool-base64.js" | prepend: site.baseurl }}"></script>
 <script src="{{ "/js/tool-image-to-dataurl.js" | prepend: site.baseurl }}"></script>

@@ -1,6 +1,3 @@
----
----
-/* jekyll-babel should process this file */
 (function(){
 
   $(() => {
@@ -32,11 +29,11 @@
         }
     });
 
-    $('#copy-image-data-url').tooltip({
-        placement: 'bottom',
-        trigger: 'hover ',
-        title: 'Ctrl(Cmd) + V to paste.'
-    });
+    // $('#copy-image-data-url').tooltip({
+    //     placement: 'bottom',
+    //     trigger: 'hover ',
+    //     title: 'Ctrl(Cmd) + V to paste.'
+    // });
 
   });
 

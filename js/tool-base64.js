@@ -1,6 +1,3 @@
----
----
-/* jekyll-babel should process this file */
 (function(){
 
   $(() => {

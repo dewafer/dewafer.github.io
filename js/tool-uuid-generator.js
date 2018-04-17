@@ -1,6 +1,3 @@
----
----
-/* jekyll-babel should process this file */
 (function(){
 
   $(() => {
@@ -27,11 +24,11 @@
               }
           }
       });
-      $('#copy-random-uuid').tooltip({
-          placement: 'bottom',
-          trigger: 'hover ',
-          title: 'Ctrl(Cmd) + V to paste.'
-      });
+      // $('#copy-random-uuid').tooltip({
+      //     placement: 'bottom',
+      //     trigger: 'hover ',
+      //     title: 'Ctrl(Cmd) + V to paste.'
+      // });
       function genRandomUUID() {
           if($('#gen-random-uuid-uppercase').is(':checked')) {
               return uuid().toUpperCase();
