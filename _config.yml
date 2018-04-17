@@ -1,30 +1,36 @@
 exclude: ["README.md", "Gemfile", "Gemfile.lock", "less","node_modules","Gruntfile.js","package.json","dewafer-site.sublime-project"]
 
 # Site settings
-title: 努力写个博客
+title: "@月黑风高食肉虎"
 email: dewafer@gmail.com
 header-img: img/home-bg.jpg
-description: "懒惰成翔的常年不更新的dewafer的个人博客"
+description: > # this means to ignore newlines until "baseurl:"
+  欢迎来到<a href="http://weibo.com/dewafer">@月黑风高食肉虎</a>的博客！
+  本博客展示的是技术相关的内容（其实也没什么内容），
+  欢迎您不提任何意见与建议。
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://www.dewafer.com" # the base hostname & protocol for your site
 hostname: "dewafer.com"
-#twitter_username: dewafer
+twitter_username: dewafer
 github_username:  dewafer
-#facebook_username: dewafer
+facebook_username: dewafer
 weibo_username: dewafer
 
-author: dewafer
-author_url: "https://github.com/dewafer"
+tagline:             '一个可有可无的博客'
+paginate:            5
+
+# Permalinks
+#
+# Use of `relative_permalinks` ensures post links from the index work properly.(doesn't work in 3.0)
+permalink:           pretty
+# relative_permalinks: true
 
 # Build settings
 markdown: kramdown
-#highlighter: pygments
-highlighter: rouge
-permalink: pretty
-
-# Enable pagination
-paginate: 12
-
-gems:
+theme: minima
+plugins:
+  - jekyll-feed
   - jekyll-paginate
-  - jekyll-babel
+
+author: dewafer
+author_url: "https://github.com/dewafer"

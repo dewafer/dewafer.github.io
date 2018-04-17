@@ -2,7 +2,6 @@
 layout: page
 title: "工具"
 description: "一点点实用的小公举。"
-header-img: "img/contact-bg.jpg"
 ---
 
 <h3>UUID generator</h3>

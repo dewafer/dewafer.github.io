@@ -1,38 +1,44 @@
 ---
-layout: page-index
-description: "这是 懒惰成翔的 常年不更新的 dewafer 的 个人博客。"
+layout: default
+title: Home
 ---
 
-{% for post in paginator.posts %}
-<div class="post-preview">
-    <a href="{{ post.url | prepend: site.baseurl }}">
-        <h2 class="post-title">
-            {{ post.title }}
-        </h2>
-        {% if post.subtitle %}
-        <h3 class="post-subtitle">
-            <i class="fa fa-hashtag"></i>
-            {{ post.subtitle }}
-        </h3>
-        {% endif %}
-    </a>
-    <p class="post-meta"><i class="fa fa-terminal"></i> {{ post.date | date: "%Y/%-m/%-d" }}<!--，作者：{% if post.author %}{{ post.author }}{% else %}{{ site.author }}{% endif %}--></p>
-</div>
-<hr>
-{% endfor %}
+<div class="posts">
+  {% for post in paginator.posts %}
+  <div class="post">
+    <h1 class="post-title">
+      <a href="{{ post.url | prepend: site.baseurl }}">
+        {{ post.title }}
+      </a>
+    </h1>
 
-<!-- Pager -->
-{% if paginator.total_pages > 1 %}
-<ul class="pager">
-    {% if paginator.previous_page %}
-    <li class="previous">
-        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; 新的文章</a>
-    </li>
+    <span class="post-date"><i class="far fa-calendar-alt"></i> {{ post.date | date: "%Y年 %-m月 %-d日" }}</span>
+
+    {% if post.subtitle %}
+      <i class="fa fa-hashtag"></i>
+      {{ post.subtitle }}
+    {% else %}
+      <i class="fa fa-hashtag"></i>
+      {{ post.excerpt | remove: '<p>' | remove: '</p>' }}
     {% endif %}
+  </div>
+  {% endfor %}
+</div>
+
+<div class="pagination">
+  {% if paginator.previous_page %}
+    {% if paginator.page == 2 %}
+      <a class="pagination-item newer" href="{{ site.baseurl }}/">前一页</a>
+    {% else %}
+      <a class="pagination-item newer" href="{{ site.baseurl }}/page{{paginator.previous_page}}">前一页</a>
+    {% endif %}
+  {% else %}
+    <span class="pagination-item newer">前一页</span>
+  {% endif %}
     {% if paginator.next_page %}
-    <li class="next">
-        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">旧的文章 &rarr;</a>
-    </li>
-    {% endif %}
-</ul>
-{% endif %}
+    <a class="pagination-item older" href="{{ site.baseurl }}/page{{paginator.next_page}}">下一页</a>
+  {% else %}
+    <span class="pagination-item older">下一页</span>
+  {% endif %}
+</div>
+
