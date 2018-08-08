@@ -4,3 +4,16 @@
     color: rgba(0, 0, 0, 0.2);
     margin-bottom: 1em;
 }
+
+.donate {
+  margin-top: 60px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.5);
+  opacity: 0.5;
+  filter: alpha(opacity=40); /* For IE8 and earlier */
+}
+
+.donate-qr-code {
+  margin: 0 auto 0 auto;
+  max-width: 160px;
+}

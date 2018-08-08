@@ -6,6 +6,11 @@ layout: default
   <h1 class="post-title">{{ page.title }}</h1>
   <span class="post-date"><i class="far fa-calendar-alt"></i> {{ page.date | date: "%Y年 %-m月 %-d日" }}</span>
   {{ content }}
+
+  <div class="donate">
+    <img class="donate-qr-code" src="{{ site.baseurl }}/img/alipay.jpeg" title="Thanks for donation 感谢打赏" />
+    <small>若本文对您有帮助，欢迎打赏，感谢您的鼓励。</small>
+  </div>
 </div>
 
 <div class="related">
