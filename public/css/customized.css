@@ -9,11 +9,24 @@
   margin-top: 60px;
   text-align: center;
   color: rgba(0, 0, 0, 0.5);
+}
+
+.qr-code-box {
+  display: inline-block;
+  margin: 0 auto 0 auto;
+  font-size: 0.9em;
+}
+
+.qr-code-box img {
+  max-width: 180px;
+}
+
+.alipay-qr-code {
   opacity: 0.5;
   filter: alpha(opacity=40); /* For IE8 and earlier */
 }
 
-.donate-qr-code {
-  margin: 0 auto 0 auto;
-  max-width: 160px;
+.wechat-qr-code {
+  opacity: 0.7;
+  filter: alpha(opacity=70); /* For IE8 and earlier */
 }
