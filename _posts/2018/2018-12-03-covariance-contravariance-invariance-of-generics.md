@@ -3,17 +3,17 @@ layout: post
 title: 泛型的协变、逆变、不变
 ---
 
-听潘总说，新版Go语言要上泛型了，哈哈！说到泛型最终还是离不开它的协变、逆变和不变的问题，譬如在Java里`String`是`Object`的子类型，那么`List<String>`是`List<Object>`的子类型吗？最近正好在读《Kotlin in Action》里关于泛型的一章，我觉得这章写得很好，非常简单易懂，因此在这里做个笔记。
+听潘总说，新版Go语言要上泛型了，哈哈！说到泛型最终还是离不开它的协变、逆变和不变的问题，譬如在Java里`String`是`Object`的子类型，那么`List<String>`是`List<Object>`的子类型吗？最近正好在读《kotlin in Action》里关于泛型的一章，我觉得这章写得很好，非常简单易懂，因此在这里做个笔记。
 
 要回答上述这个问题，我们首先要定义两个术语：子类型（subtype）和父类型（supertype）。
 
 #### 子类型（subtype）与父类型（supertype）
 
-根据《Kotlin in Action》中的定义：
+根据《kotlin in Action》中的定义：
 
 >  A type B is a subtype of a type A if you can use the value of the type B whenever a value of the type A is required. For instance, Int is a subtype of Number, but Int isn’t a subtype of String. 
 
-> 子类型（subtype）指，如果你可以在任何必须使用类型A的值的地方使用类型B的值，那么我们就说类型B是类型A的子类型。譬如，（在Kotlin里）`Int`是`Number`的子类型，但不是`String`的子类型。
+> 子类型（subtype）指，如果你可以在任何必须使用类型A的值的地方使用类型B的值，那么我们就说类型B是类型A的子类型。譬如，（在kotlin里）`Int`是`Number`的子类型，但不是`String`的子类型。
 
 > The term supertype is the opposite of subtype. If A is a subtype of B, then B is a supertype of A.
 
@@ -21,7 +21,7 @@ title: 泛型的协变、逆变、不变
 
 根据字面意思，这很好理解，简单来说我们可以把它们理解成为父类(superclass)和子类（subclass），但两者并不完全相同，主要原因有两点。
 
-第一点是因为，在Kotlin里有nullable和非nullable类型的区别，譬如非nullable类型`Int`是nullable类型`Int?`的子类型（subtype）但不是子类（subclass）。
+第一点是因为，在kotlin里有nullable和非nullable类型的区别，譬如非nullable类型`Int`是nullable类型`Int?`的子类型（subtype）但不是子类（subclass）。
 
 这点很好理解，因为一个nullable的变量通常可以被赋予两种类型的值——`null`和非`null`的值。那么在同类型的非nullable的类型变量下，你只能赋予非`null`的值。
 所以你可以把一个非nullable的变量赋予给同类型的nullable的变量，这也就符合了子类型（subtype）的定义——我可以在nullable类型的地方用同类型的非nullable的值。
@@ -109,21 +109,21 @@ executeSpecialProcess(specialProcesses)
 不应该被接受的类型的新元素（`specialProcesses`列表应该只接受`SpecialProcess`，但它却加了个`BrokenProcess`），从而导致了后面的`executeSpecialProcess`方法调用出cast exception的错。
 
 所以我们说，如果随随便便让泛型发生协变，虽然编译期不会有问题，但并不能保证代码在运行时的安全性。你可能会说，我不在乎，只要能编译过能跑就行。
-可是你要知道这是Java/Kotlin啊，是讲究工程性的强类型的语言啊，编译期查错可一直是这些强类型语言优势之一啊，怎么能这么轻言放弃！沦落为二流的语言呢？！
+可是你要知道这是Java/kotlin啊，是讲究工程性的强类型的语言啊，编译期查错可一直是这些强类型语言优势之一啊，怎么能这么轻言放弃！沦落为二流的语言呢？！
 这个时候我们就得通过付出一些代价，来获得强类型语言应该要有的，编译期就能保证的安全性。
 
 接下来我们就来聊一下这些“代价”。
 
 #### `in`与`out`关键字
 
-如果你仔细去看Kotlin的源代码会发现，在`List`的定义中的泛型里，有一个`out`关键字：
+如果你仔细去看kotlin的源代码会发现，在`List`的定义中的泛型里，有一个`out`关键字：
 
 ```kotlin
 interface List<out E> : Collection<E>
 ```
 
-并且，如果你更仔细看，你会发现在Kotlin的`List`接口中（注意是Kotlin的，不是Java的`List`接口），是没有`add`方法的。
-因为Kotlin把传统意义上的列表拆成了只读的`kotlin.collections.List`和可读可写的`kotlin.collections.MutableList`两个接口，
+并且，如果你更仔细看，你会发现在kotlin的`List`接口中（注意是kotlin的，不是Java的`List`接口），是没有`add`方法的。
+因为kotlin把传统意义上的列表拆成了只读的`kotlin.collections.List`和可读可写的`kotlin.collections.MutableList`两个接口，
 所以在`MutableList`中会有`add`方法，而在`List`中则没有。
 
 ```kotlin
@@ -132,7 +132,7 @@ interface MutableList<E> : List<E>, MutableCollection<E>
 
 所以，在我们上述的代码中：
 
-```Kotlin
+```kotlin
 // 往list里新加一个 broken process
 fun appendNewBrokenProcess(processList: List<Process>) {
   processList.add(BrokenProcess()) // 这行会编译不过，但我们先假设这行能 work，稍后解释为什么。
@@ -150,38 +150,38 @@ fun appendNewBrokenProcess(processList: List<Process>) {
 
 > 就是如果`String`是`Object`的子类型，那么我可以在需要用`List<Object>`的地方用`List<String>`的情况，叫做协变(Covariance)。
 
-其实在Kotlin中，除了`out`，还有个`in`，它正好与`out`相反，可以令指定的对象发生逆变(Contravariance)，我们后面来解释什么是逆变。
+其实在kotlin中，除了`out`，还有个`in`，它正好与`out`相反，可以令指定的对象发生逆变(Contravariance)，我们后面来解释什么是逆变。
 如果两个都不指定，则不能发生变化，称作不变(invariance)。
 
 #### 与Java的相同与不同
 
-Kotlin中的`in`与`out`叫做定义处变化（declaration-site variance），Java没有相同的东西，但是Java有个类似的东西，如果你还记得：
+kotlin中的`in`与`out`叫做定义处变化（declaration-site variance），Java没有相同的东西，但是Java有个类似的东西，如果你还记得：
 
-```Java
-// Java
+```java
+// java
 interface Collection<E> ... {
   void addAll(Collection<? extends E> items);
 }
 ```
 
 对，这边的`extends`其实就和`out`差不多意思，但Java叫做使用处变化（use-site variance），也就是说，发生协变或逆变得情况实在泛型的使用处声明的，而非定义处。
-Kotlin正好与之相反，并且注意，Kotlin也是支持使用处变化（use-site variance）声明的，这个时候，在Kotlin中称作类型投影（Type projections）。
+kotlin正好与之相反，并且注意，kotlin也是支持使用处变化（use-site variance）声明的，这个时候，在kotlin中称作类型投影（Type projections）。
 
-简单来说，在Kotlin中，`Array<out Any>`等同于Java的`Array<? extends Object>`，而`Array<in String>`则等同于`Array<? super String>`。
-在这种情况下，Java叫做使用处变化（use-site variance），而在Kotlin中则称作类型投影（Type projections）。
+简单来说，在kotlin中，`Array<out Any>`等同于Java的`Array<? extends Object>`，而`Array<in String>`则等同于`Array<? super String>`。
+在这种情况下，Java叫做使用处变化（use-site variance），而在kotlin中则称作类型投影（Type projections）。
 
-Kotlin中有而Java中没有的情况叫做定义处变化（declaration-site variance），就是说泛型能否使拥有泛型参数的类发生协变，可以在泛型变量定义时指定。
+kotlin中有而Java中没有的情况叫做定义处变化（declaration-site variance），就是说泛型能否使拥有泛型参数的类发生协变，可以在泛型变量定义时指定。
 
 了解了这些之后，我们回来说说前文所提到的代价。
 
 大家都知道，如果在Java中你有个`Collection`：
 
-```Java
+```java
   Collection<? extends String> strCollection = ...
 ```
 
 你是无法使用这个`Collection`的`add`的方法写入这个集合的，但你却可以使用`get`方法从集合里读出`String`对象。
-在Kotlin里也一样，`out`的泛型是只能读不能写，而`in`与之相反。在Kotlin中之所以用`in`和`out`来定义，是因为`in`和`out`指定了泛型变量能出现的位置。
+在kotlin里也一样，`out`的泛型是只能读不能写，而`in`与之相反。在kotlin中之所以用`in`和`out`来定义，是因为`in`和`out`指定了泛型变量能出现的位置。
 `in`指的是方法的传入位置(in position)，`out`则指的是传出位置(out position)。
 
 ```kotlin
@@ -193,7 +193,7 @@ Kotlin中有而Java中没有的情况叫做定义处变化（declaration-site va
 
 > PECS stands for Producer-Extends, Consumer-Super.
 
-对Kotlin来说，就是：
+对kotlin来说，就是：
 
 > Consumer in, Producer out
 
@@ -203,7 +203,7 @@ Kotlin中有而Java中没有的情况叫做定义处变化（declaration-site va
 
 逆变比较常见的一个情况就是比较器：
 
-```Kotlin
+```kotlin
 interface Comparator<in T> {
   fun compare(e1: T, e2: T): Int
 }
