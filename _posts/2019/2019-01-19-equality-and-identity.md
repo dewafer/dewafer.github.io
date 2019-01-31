@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 再谈相等性（Equality）和同一性（Identity）
-published: false
+published: true
 ---
 
 最近在读《Effective Java》第三版，讲到equals和hashCode的正确实现，感觉挺有意思的，在这里做个笔记。
@@ -217,12 +217,31 @@ assert ts.equals(dt) == false;
 
 除了对称性，另外一个多态类下的equals方法容易打破的特性是传递性，[《How to Write an Equality Method in Java by Martin Odersky, Lex Spoon, and Bill Venners》][1]这篇文章中的《Pitfall #4: Failing to define `equals` as an equivalence relation》一节讲得非常好，并且还提出了解决方案（此解决方案也是我们后面要讲的Lombok所使用的解决方案），我就不在这里赘述了。
 
-### 生产中高效率的实现：lombok的@EqualsAndHashCode
+现实生活中经常会碰到继承并且需要覆写`equals`和`hashCode`的地方莫过于Entity类了。
 
-// GO ON
+在Hibernate中，Entity实体类因为实现需要（譬如lazy load）会使用cglib动态生成Entity的子类来覆盖实现，这个时候我们通常希望cglib动态生成的类与实体类是相等的，我们就想到要使用`instanceof`而不是`getClass()`，但通常来说我们继承一个实体类是希望复用其中的字段而不是希望他们相等（譬如[`org.springframework.data.jpa.domain.AbstractPersistable`][2]类，Spring有`ProxyUtils`，你能不看它源码自己写一个吗？），这个时候我们就想到要使用`getClass()`而不是`instanceof`了，是不是矛盾了？
+
+### 生产中高效率的实现：Lombok的@EqualsAndHashCode
+
+想要正确实现`equals`和`hashCode`方法其实并不难，网上能找到很多正确的实现，但你会发现这些正确的实现都很重复，如果你要写很多实体类不得不到处复制黏贴这些代码。如果使用IDE生成，那么问题又来了，如果以后增加了一个字段怎么办？团队里有个刺头就是不用跟你们一样的IDE怎么办？
+
+我们还是用Lombok吧。
+
+Lombok非常好用，网上有很多教程我就不重复了，而且它不依赖IDE，不增加运行期负担，简直完美。但前提是你要会正确使用。
+
+`@EqualsAndHashCode`注解的使用方法很简单，请参考[源文档][3]，如果你觉得源文档的英文很复杂不想看的话，最简单的使用方法就是把这个注解加到需要生成`equals`和`hashCode`的类上就行了。
+
+这里说一下在继承类上使用的注意事项，在继承类上使用这个注解必须遵守以下两点：
+
+1. 父类必须也使用`@EqualsAndHashCode`注解生成正确的`equals`和`hashCode`方法，或者父类自身**正确地实现**了这两个方法。（[如何判断**正确地实现**?][1]）
+2. 在1的前提下，在子类上需要使用`@EqualsAndHashCode`时，必须加上`callSuper=true`参数，除非父类没有自身实现`equals`和`hashCode`方法而使用的是继承自`Object`的方法，并且在确定这不符合当前需求的情况下，必须**显示地**加上`callSuper=false`，除非父类就是`Object`类。
+
+好了就先写到这里吧，有想到了再加。
 
 ------
 
 
 [1]: https://www.artima.com/lejava/articles/equality.html	"How to Write an Equality Method in Java by Martin Odersky, Lex Spoon, and Bill Venners"
 
+[2]: https://github.com/spring-projects/spring-data-jpa/blob/master/src/main/java/org/springframework/data/jpa/domain/AbstractPersistable.java#L99 "AbstractPersistable"
+[3]: https://www.projectlombok.org/features/EqualsAndHashCode "@EqualsAndHashCode"
