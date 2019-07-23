@@ -4,6 +4,8 @@ title: 深入了解 Spring Security (2)
 subtitle: 无证程序员带你深入了解 Spring Security
 ---
 
+欢迎收看[废柴大叔小课堂的Spring Security教程系列](https://space.bilibili.com/8265121/channel/detail?cid=68498)。
+
 ### 3. 鉴权
 
 我们来看看Spring Security的鉴权过程到底是怎么样的。

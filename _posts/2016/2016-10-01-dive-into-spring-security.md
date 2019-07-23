@@ -4,6 +4,8 @@ title: 深入了解 Spring Security
 subtitle: 无证程序员带你深入了解 Spring Security
 ---
 
+欢迎收看[废柴大叔小课堂的Spring Security教程系列](https://space.bilibili.com/8265121/channel/detail?cid=68498)。
+
 ### 0. 前言
 
 本文将从宏观的架构的角度带你深入了解Spring Security。读者可以通过本文了解到Spring Security的基础构建，以及其实现安全机制的基本架构等。
