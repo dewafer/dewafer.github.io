@@ -11,6 +11,10 @@
   color: rgba(0, 0, 0, 0.5);
 }
 
+.donate p, .donate small {
+  text-indent: 0 !important;
+}
+
 .qr-code-box {
   display: inline-block;
   margin: 0 auto 0 auto;
@@ -19,6 +23,7 @@
 
 .qr-code-box img {
   max-width: 180px;
+  margin: 0 0;
 }
 
 .alipay-qr-code {
@@ -42,4 +47,18 @@ white-space: pre;
 word-break: normal;
 word-wrap: normal;
 font-size: 0.6rem;
+}
+
+.container {
+  max-width: 28rem;
+}
+@media (min-width: 38em) {
+  .container {
+    max-width: 32rem;
+  }
+}
+@media (min-width: 56em) {
+  .container {
+    max-width: 42rem;
+  }
 }
