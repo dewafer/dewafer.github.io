@@ -1,5 +1,3 @@
-exclude: ["README.md", "Gemfile", "Gemfile.lock", "less","node_modules","Gruntfile.js","package.json","dewafer-site.sublime-project"]
-
 # Site settings
 title: "@月黑风高食肉虎"
 email: dewafer@gmail.com
