@@ -6,14 +6,15 @@ title: Home
 <div class="posts">
   {% for post in paginator.posts %}
   <div class="post">
+    <span class="post-date"><i class="far fa-calendar-alt"></i> {{ post.date | date: "%Y 年 %-m 月 %-d 日" }}</span>
+
     <h1 class="post-title">
       <a href="{{ post.url | prepend: site.baseurl }}">
         {{ post.title }}
       </a>
     </h1>
-
-    <span class="post-date"><i class="far fa-calendar-alt"></i> {{ post.date | date: "%Y年 %-m月 %-d日" }}</span>
-
+    
+    <span class="post-excerpt">
     {% if post.subtitle %}
       <i class="fa fa-hashtag"></i>
       {{ post.subtitle }}
@@ -21,6 +22,7 @@ title: Home
       <i class="fa fa-hashtag"></i>
       {{ post.excerpt | remove: '<p>' | remove: '</p>' }}
     {% endif %}
+    </span>
   </div>
   {% endfor %}
 </div>
